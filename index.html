@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#08111F" id="metaTheme" />
+<title>Ciência da Computação · Mapa de Consulta VS</title>
+<meta name="description" content="Mapa de consulta responsivo das disciplinas de Ciência da Computação: conceitos, temas demonstrados, exemplos, entregáveis técnicos, projetos, pré-requisitos e trilhas profissionais." />
+<style>
+:root{
+  --bg:#08111F;--surface:#0D1A2D;--card:rgba(255,255,255,.065);--card-2:rgba(255,255,255,.105);
+  --text:#F3F7FF;--muted:#AAB7CF;--line:rgba(255,255,255,.13);--accent:#67E8D2;--accent-2:#F6C85F;
+  --shadow:0 24px 80px rgba(0,0,0,.34);--radius-xl:30px;--radius-lg:22px;--radius-md:16px;--max:1260px;--nav-h:76px;
+  --font-body:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --font-title:Georgia,"Times New Roman",ui-serif,serif;--font-mono:"SFMono-Regular",Consolas,Menlo,monospace;
+}
+[data-theme="light"]{--bg:#F5F7FB;--surface:#FFFFFF;--card:rgba(8,17,31,.055);--card-2:rgba(8,17,31,.085);--text:#08111F;--muted:#4D5B72;--line:rgba(8,17,31,.13);--shadow:0 24px 80px rgba(20,40,80,.13)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 18px)}
+body{margin:0;background:radial-gradient(circle at 8% -8%,rgba(103,232,210,.22),transparent 30vw),radial-gradient(circle at 92% 0%,rgba(246,200,95,.16),transparent 34vw),linear-gradient(180deg,var(--bg),var(--surface));color:var(--text);font-family:var(--font-body);line-height:1.55;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 78%)}
+body.focus .decorative,body.focus .heroStats,body.focus .pathSection,body.focus .roadmapSection{display:none!important}
+body.focus .hero{min-height:auto;padding-top:32px;padding-bottom:28px}
+button,input,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+.wrap{width:min(var(--max),calc(100% - clamp(22px,5vw,64px)));margin-inline:auto}
+.topbar{position:sticky;top:0;z-index:100;height:var(--nav-h);display:flex;align-items:center;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(18px)}
+.topbarInner{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;width:min(var(--max),calc(100% - clamp(22px,5vw,64px)));margin:auto}
+.brand{display:flex;gap:12px;align-items:center;min-width:0}.logo{width:43px;height:43px;border-radius:15px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#07111F;display:grid;place-items:center;font-weight:950;letter-spacing:-.08em;box-shadow:0 14px 34px rgba(103,232,210,.20);flex:0 0 auto}
+.brand strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.02em}.brand span{display:block;color:var(--muted);font-size:.79rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.actions{display:flex;gap:8px;align-items:center}.btn{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;min-height:42px;padding:10px 13px;display:inline-flex;align-items:center;justify-content:center;gap:8px;-webkit-tap-highlight-color:transparent;transition:.2s ease}.btn:hover{transform:translateY(-1px);background:var(--card-2);border-color:color-mix(in srgb,var(--accent) 50%,var(--line))}.btnPrimary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#07111F;border-color:transparent;font-weight:850}
+.hero{min-height:calc(100svh - var(--nav-h));display:grid;align-items:center;padding:clamp(42px,8vw,94px) 0}.heroGrid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(286px,.62fr);gap:clamp(24px,5vw,70px);align-items:center}
+.kicker{display:inline-flex;align-items:center;gap:8px;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);border-radius:999px;padding:8px 12px;text-transform:uppercase;font-weight:850;font-size:.78rem;letter-spacing:.065em}
+h1,h2,h3{margin:0;line-height:1.04;letter-spacing:-.045em}h1{font-family:var(--font-title);font-size:clamp(2.7rem,8.2vw,7.7rem);max-width:950px;margin-top:18px}.lead{color:var(--muted);font-size:clamp(1rem,2vw,1.25rem);max-width:790px;margin:22px 0 0}
+.heroStats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:28px}.stat{border:1px solid var(--line);background:var(--card);border-radius:18px;padding:16px}.stat strong{display:block;font-size:clamp(1.35rem,3vw,2.05rem);line-height:1}.stat span{display:block;color:var(--muted);font-size:.82rem;margin-top:6px}
+.panel{border:1px solid var(--line);border-radius:var(--radius-xl);background:linear-gradient(180deg,var(--card-2),var(--card));box-shadow:var(--shadow);padding:clamp(18px,3vw,26px);overflow:hidden;position:relative}.panel::before{content:"";position:absolute;right:-58px;top:-58px;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 38%,transparent),transparent 68%)}.panelTitle{position:relative;color:var(--muted);margin-bottom:14px;font-size:.96rem}.steps{position:relative;display:grid;gap:10px}.step{border:1px solid var(--line);background:color-mix(in srgb,var(--card) 82%,transparent);border-radius:18px;padding:12px;display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:start}.step b{width:42px;height:42px;border-radius:14px;background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent);font-family:var(--font-mono);display:grid;place-items:center}.step strong{display:block}.step span{display:block;color:var(--muted);font-size:.88rem;margin-top:2px}
+.section{padding:clamp(42px,7vw,86px) 0}.sectionHead{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:end;margin-bottom:24px}h2{font-family:var(--font-title);font-size:clamp(2rem,5.3vw,4.7rem)}.intro{color:var(--muted);max-width:800px;margin:13px 0 0;font-size:clamp(.98rem,1.8vw,1.12rem)}
+.toolbar{position:sticky;top:var(--nav-h);z-index:90;background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(16px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.toolbarInner{display:grid;grid-template-columns:minmax(210px,1fr) minmax(160px,240px) auto;gap:10px;padding:12px 0}.field{width:100%;min-height:46px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--text);padding:0 16px;outline:none}.field:focus{border-color:color-mix(in srgb,var(--accent) 72%,var(--line));box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 14%,transparent)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.chip{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:8px 11px;font-size:.84rem}.chip.active{background:var(--accent);color:#07111F;border-color:transparent;font-weight:850}
+.insights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.insight{border:1px solid var(--line);background:var(--card);border-radius:var(--radius-lg);padding:clamp(18px,3vw,24px)}.insight strong{display:block;margin-bottom:8px}.insight p{margin:0;color:var(--muted);font-size:.95rem}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{border:1px solid var(--line);border-radius:var(--radius-xl);background:linear-gradient(180deg,var(--card-2),var(--card));box-shadow:0 14px 46px rgba(0,0,0,.12);overflow:hidden}.cardHead{width:100%;text-align:left;border:0;background:transparent;color:var(--text);padding:clamp(18px,3vw,24px);display:grid;gap:12px;-webkit-tap-highlight-color:transparent}.cardTop{display:flex;gap:14px;justify-content:space-between;align-items:flex-start}.cardTitle{font-size:clamp(1.12rem,2vw,1.45rem);font-weight:880;line-height:1.13;letter-spacing:-.035em}.cardDesc{margin:8px 0 0;color:var(--muted);font-size:.94rem}.plus{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--accent);flex:0 0 auto;transition:.25s ease}.open .plus{transform:rotate(45deg)}.tags{display:flex;flex-wrap:wrap;gap:7px}.tag,.code{border:1px solid var(--line);border-radius:999px;padding:5px 8px;font-size:.75rem;color:var(--muted);background:var(--card)}.code{font-family:var(--font-mono);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 22%,var(--line));background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.cardBody{display:none;padding:0 clamp(18px,3vw,24px) clamp(18px,3vw,24px)}.open .cardBody{display:block}.bodyGrid{border-top:1px solid var(--line);padding-top:16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.box{border:1px solid var(--line);background:color-mix(in srgb,var(--card) 82%,transparent);border-radius:var(--radius-md);padding:14px;min-width:0}.box.full{grid-column:1/-1}.box h4{margin:0 0 8px;color:var(--accent-2);font-size:.78rem;text-transform:uppercase;letter-spacing:.07em}.box p,.box li{color:var(--muted);font-size:.91rem}.box p{margin:0}.box ul{margin:0;padding-left:18px}.project{border-color:color-mix(in srgb,var(--accent) 26%,var(--line));background:color-mix(in srgb,var(--accent) 8%,transparent)}.project strong{display:block;color:var(--accent);margin-bottom:6px}.project span{color:var(--muted);font-size:.92rem}
+.topicGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.topicItem{border:1px solid var(--line);border-radius:16px;background:color-mix(in srgb,var(--card) 74%,transparent);padding:14px}.topicItem strong{display:block;color:var(--text);font-size:.95rem;margin-bottom:6px}.topicItem p{margin:0;color:var(--muted);font-size:.88rem}.topicItem .demo{display:block;margin-top:9px;padding:9px 10px;border-radius:12px;border:1px solid color-mix(in srgb,var(--accent) 24%,var(--line));background:color-mix(in srgb,var(--accent) 7%,transparent);color:var(--text);font-size:.86rem}.topicItem .demo b{color:var(--accent)}.topicItem em{display:block;color:var(--accent);font-style:normal;font-size:.82rem;margin-top:8px}.docGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.docItem{border:1px solid color-mix(in srgb,var(--accent-2) 28%,var(--line));background:color-mix(in srgb,var(--accent-2) 7%,transparent);border-radius:16px;padding:14px}.docItem strong{display:block;color:var(--accent-2);font-size:.94rem;margin-bottom:6px}.docItem span{display:block;color:var(--muted);font-size:.88rem}.docItem small{display:block;margin-top:8px;color:var(--accent);font-family:var(--font-mono);font-size:.72rem;line-height:1.35}.drawerBackdrop{position:fixed;inset:0;z-index:118;background:rgba(0,0,0,.48);backdrop-filter:blur(4px)}.drawerBackdrop[hidden],.mobileDrawer[hidden]{display:none}.mobileDrawer{position:fixed;z-index:119;right:12px;bottom:74px;width:min(360px,calc(100% - 24px));border:1px solid var(--line);border-radius:24px;background:color-mix(in srgb,var(--bg) 94%,transparent);box-shadow:var(--shadow);padding:14px;display:grid;gap:10px}.drawerHead{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:4px 4px 8px}.drawerHead strong{letter-spacing:-.02em}.drawerHead span{display:block;color:var(--muted);font-size:.78rem;margin-top:2px}.drawerClose{width:38px;height:38px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--text)}.drawerLinks{display:grid;gap:8px}.drawerLinks a,.drawerLinks button{width:100%;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:16px;min-height:44px;padding:10px 12px;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:10px}.drawerLinks small{color:var(--muted);font-size:.76rem}
+.priority{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 9px;font-size:.75rem;font-weight:850;border:1px solid var(--line)}
+.priority.high{color:#07111F;background:var(--accent-2);border-color:transparent}
+.priority.mid{color:#07111F;background:var(--accent);border-color:transparent}
+.priority.low{color:var(--muted);background:var(--card)}
+.quickActions{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+.btnSmall{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;min-height:36px;padding:8px 11px;display:inline-flex;align-items:center;gap:7px;font-size:.84rem}
+.btnSmall:hover{background:var(--card-2);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.dependencyGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.dependencyItem{border:1px solid var(--line);background:color-mix(in srgb,var(--card) 76%,transparent);border-radius:14px;padding:12px}.dependencyItem strong{display:block;color:var(--accent);font-size:.86rem;margin-bottom:5px}.dependencyItem span{display:block;color:var(--muted);font-size:.88rem}
+mark.hl{background:color-mix(in srgb,var(--accent-2) 60%,transparent);color:var(--text);border-radius:5px;padding:0 3px}
+.studyBackdrop{position:fixed;inset:0;z-index:130;background:rgba(0,0,0,.58);backdrop-filter:blur(5px);padding:clamp(12px,3vw,24px);display:grid;place-items:center}.studyBackdrop[hidden]{display:none}.studyModal{width:min(980px,100%);max-height:min(86svh,900px);overflow:auto;border:1px solid var(--line);border-radius:28px;background:color-mix(in srgb,var(--bg) 94%,transparent);box-shadow:var(--shadow)}.studyHeader{position:sticky;top:0;z-index:3;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:18px;display:flex;align-items:flex-start;justify-content:space-between;gap:14px}.studyHeader h3{font-size:clamp(1.25rem,3vw,2rem);letter-spacing:-.035em}.studyHeader p{margin:6px 0 0;color:var(--muted);font-size:.92rem}.studyClose{width:42px;height:42px;border-radius:15px;border:1px solid var(--line);background:var(--card);color:var(--text);flex:0 0 auto}.studyBody{padding:18px;display:grid;gap:12px}.lessonStep{border:1px solid var(--line);border-radius:18px;background:var(--card);padding:15px;display:grid;grid-template-columns:42px 1fr;gap:12px}.lessonStep b{width:42px;height:42px;border-radius:14px;background:color-mix(in srgb,var(--accent) 13%,transparent);color:var(--accent);display:grid;place-items:center;font-family:var(--font-mono)}.lessonStep strong{display:block;margin-bottom:5px}.lessonStep p,.lessonStep li{color:var(--muted);font-size:.92rem}.lessonStep ul{margin:0;padding-left:18px}.deliverableLibrary{margin-top:22px;border:1px solid var(--line);border-radius:var(--radius-xl);background:var(--card);padding:clamp(20px,4vw,34px)}.libraryGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}.libraryCard{border:1px solid var(--line);border-radius:18px;background:color-mix(in srgb,var(--card) 80%,transparent);padding:14px}.libraryCard h3{font-size:1rem;margin-bottom:10px}.libraryCard ul{margin:0;padding-left:18px;color:var(--muted);font-size:.88rem}.bottomNav{position:fixed;left:10px;right:10px;bottom:10px;z-index:88;display:none;grid-template-columns:repeat(5,1fr);gap:7px;border:1px solid var(--line);border-radius:22px;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(16px);box-shadow:0 18px 50px rgba(0,0,0,.28);padding:8px}.bottomNav a,.bottomNav button{border:0;background:transparent;color:var(--muted);border-radius:15px;min-height:44px;font-size:.76rem;display:grid;place-items:center;gap:2px}.bottomNav b{display:block;color:var(--text);font-size:1rem;line-height:1}.bottomNav a:active,.bottomNav button:active{background:var(--card)}
+
+.empty{grid-column:1/-1;border:1px dashed var(--line);border-radius:var(--radius-xl);padding:30px;text-align:center;color:var(--muted)}
+.pathGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.pathCard{border:1px solid var(--line);background:var(--card);border-radius:var(--radius-lg);padding:18px;min-height:220px}.pathCard h3{font-size:1.02rem;margin-bottom:10px}.pathCard ul{margin:0;padding-left:18px;color:var(--muted);font-size:.88rem}
+.roadmap{border:1px solid var(--line);border-radius:var(--radius-xl);background:var(--card);padding:clamp(20px,4vw,34px)}.roadGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}.road{border:1px solid var(--line);border-radius:var(--radius-md);background:color-mix(in srgb,var(--card) 82%,transparent);padding:14px}.road b{font-family:var(--font-mono);font-size:.78rem;color:var(--accent)}.road strong{display:block;margin:6px 0}.road p{margin:0;color:var(--muted);font-size:.9rem}
+.footer{border-top:1px solid var(--line);padding:42px 0 76px;color:var(--muted)}.float{position:fixed;right:14px;bottom:14px;z-index:80;display:grid;gap:8px}.float .btn{width:48px;height:48px;border-radius:18px;padding:0;box-shadow:0 12px 34px rgba(0,0,0,.22)}
+@media(max-width:1120px){.heroGrid{grid-template-columns:1fr}.panel{max-width:760px}.pathGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.roadGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.libraryGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:900px){:root{--nav-h:70px}.heroStats{grid-template-columns:repeat(2,minmax(0,1fr))}.insights{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.toolbarInner{grid-template-columns:1fr}.sectionHead{grid-template-columns:1fr}.bodyGrid,.topicGrid,.docGrid{grid-template-columns:1fr}}
+@media(max-width:620px){body{padding-bottom:78px}.bottomNav{display:grid}.wrap,.topbarInner{width:min(100% - 22px,var(--max))}.logo{width:38px;height:38px;border-radius:13px}.brand span{display:none}.hideMobile{display:none}.btn{min-height:40px;padding:9px 11px}h1{font-size:clamp(2.35rem,15vw,4.2rem)}.heroStats{grid-template-columns:1fr}.pathGrid,.roadGrid,.libraryGrid{grid-template-columns:1fr}.float{right:10px;bottom:10px}.float .btn{width:44px;height:44px;border-radius:16px}}
+@media(max-width:430px){.topbarInner{gap:8px}.brand strong{max-width:165px}.actions{gap:6px}.btn{font-size:.86rem}.panel,.card,.roadmap{border-radius:22px}.cardHead{padding:17px}.cardBody{padding-left:17px;padding-right:17px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbarInner">
+    <a href="#top" class="brand" aria-label="Voltar ao topo"><div class="logo">VS</div><div><strong>Mapa C.C.</strong><span>Ciência da Computação · Consulta Viva</span></div></a>
+    <div class="actions">
+      <button class="btn" id="themeBtn">◐ <span class="hideMobile">Tema</span></button>
+      <button class="btn" id="focusBtn">◎ <span class="hideMobile">Foco</span></button>
+      <a class="btn btnPrimary" href="#disciplinas" id="studyBtn">Estudar</a>
+    </div>
+  </div>
+</header>
+<main id="top">
+  <section class="hero wrap">
+    <div class="heroGrid">
+      <div>
+        <span class="kicker">System Design VS · Study OS 0.5</span>
+        <h1>Mapa de Consulta da Ciência da Computação.</h1>
+        <p class="lead">Todas as disciplinas do curso organizadas como um material vivo: conceito, temas essenciais decompostos, exemplos, ferramentas, documentos gerados na prática, pré-requisitos, mini-projeto e checklist de domínio.</p>
+        <div class="heroStats decorative">
+          <div class="stat"><strong id="count">0</strong><span>disciplinas e optativas</span></div>
+          <div class="stat"><strong>5</strong><span>trilhas profissionais</span></div>
+          <div class="stat"><strong>3.200h</strong><span>carga da matriz</span></div>
+          <div class="stat"><strong>250h</strong><span>atividades complementares</span></div>
+        </div>
+      </div>
+      <aside class="panel decorative">
+        <div class="panelTitle">Como usar este material</div>
+        <div class="steps">
+          <div class="step"><b>01</b><div><strong>Busque</strong><span>Procure por disciplina, tema, tecnologia, ferramenta ou carreira.</span></div></div>
+          <div class="step"><b>02</b><div><strong>Filtre</strong><span>Escolha uma trilha: dados, desenvolvimento, cloud, produto ou computação profunda.</span></div></div>
+          <div class="step"><b>03</b><div><strong>Abra</strong><span>Use os cards para consultar conceitos, exemplos e projetos.</span></div></div>
+          <div class="step"><b>04</b><div><strong>Construa</strong><span>Transforme mini-projetos em GitHub, estágio, TCC e portfólio.</span></div></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+  <section class="section wrap decorative">
+    <div class="sectionHead"><div><span class="kicker">Leitura estratégica</span><h2>A grade como arquitetura de carreira.</h2><p class="intro">O curso não é uma fila de disciplinas: é uma sequência de camadas para formar raciocínio, engenharia, sistemas, dados, inteligência e visão profissional.</p></div></div>
+    <div class="insights">
+      <article class="insight"><strong>Fundamento</strong><p>Lógica, matemática e algoritmos constroem a capacidade de resolver problemas difíceis com precisão.</p></article>
+      <article class="insight"><strong>Engenharia</strong><p>Requisitos, análise, projeto, implementação e testes transformam ideias em software confiável.</p></article>
+      <article class="insight"><strong>Escala</strong><p>Redes, sistemas, banco de dados, cloud, segurança e distribuição levam o software para o mundo real.</p></article>
+    </div>
+  </section>
+  <div class="toolbar" id="disciplinas"><div class="toolbarInner wrap"><input id="search" class="field" type="search" placeholder="Buscar disciplina, tema, ferramenta ou carreira..." /><select id="filter" class="field"><option value="Todas">Todas as trilhas</option></select><button id="expand" class="btn">Expandir tudo</button></div></div>
+  <section class="section wrap">
+    <div class="sectionHead"><div><span class="kicker">Consulta por disciplina</span><h2>Disciplinas mapeadas.</h2><p class="intro">Clique em cada card para abrir a decomposição. Agora cada disciplina também traz os temas essenciais destrinchados e documentos práticos que podem virar entregáveis reais.</p><div id="chips" class="chips"></div></div></div>
+    <div id="grid" class="grid"></div>
+  </section>
+  <section class="section wrap pathSection">
+    <div class="sectionHead"><div><span class="kicker">Trilhas profissionais</span><h2>Do curso ao portfólio.</h2><p class="intro">As trilhas ajudam a escolher projetos, temas de TCC e direção de carreira.</p></div></div>
+    <div id="paths" class="pathGrid"></div>
+  </section>
+  
+  <section class="section wrap" id="biblioteca">
+    <div class="deliverableLibrary">
+      <span class="kicker">Biblioteca de entregáveis</span>
+      <h2>Documentos técnicos que viram portfólio.</h2>
+      <p class="intro">A ideia é que cada disciplina gere evidências reais de aprendizado: documentos, diagramas, notebooks, checklists, relatórios, código e artefatos que podem ir para GitHub, estágio, TCC ou apresentação profissional.</p>
+      <div class="libraryGrid">
+        <article class="libraryCard"><h3>Engenharia de Software</h3><ul><li>PRD — Product Requirements Document</li><li>ETF — Especificação Técnica Funcional</li><li>DAS — Documento de Arquitetura</li><li>PTE — Plano de Testes e Evidências</li><li>README Profissional</li></ul></article>
+        <article class="libraryCard"><h3>Dados e IA</h3><ul><li>NAR — Notebook Analítico Reprodutível</li><li>DDM — Dicionário de Dados e Métricas</li><li>RMP — Relatório de Modelagem Preditiva</li><li>PEI — Painel Executivo de Indicadores</li><li>Relatório de Qualidade dos Dados</li></ul></article>
+        <article class="libraryCard"><h3>Infraestrutura e Cloud</h3><ul><li>ROP — Runbook Operacional</li><li>DII — Diagrama de Infraestrutura</li><li>POB — Plano de Observabilidade</li><li>Checklist de Segurança</li><li>Plano de Deploy e Recuperação</li></ul></article>
+        <article class="libraryCard"><h3>Acadêmico e TCC</h3><ul><li>PPAT — Pré-Projeto Acadêmico-Técnico</li><li>Matriz de Validação do Projeto</li><li>Relatório Técnico-Formal</li><li>Caderno de Demonstrações</li><li>Apresentação Final Executiva</li></ul></article>
+      </div>
+    </div>
+  </section>
+
+<section class="section wrap roadmapSection">
+    <div class="roadmap"><span class="kicker">Roadmap</span><h2>Próximas evoluções.</h2><p class="intro">Agora o material opera como um Study OS: consulta rápida, estudo guiado, prioridades, dependências, entregáveis técnicos e navegação mobile.</p><div class="roadGrid"><div class="road"><b>0.3</b><strong>Pré-requisitos visuais</strong><p>Mapa de dependências entre disciplinas.</p></div><div class="road"><b>0.4</b><strong>Projetos por semestre</strong><p>Entregas progressivas para GitHub.</p></div><div class="road"><b>0.5</b><strong>Modo revisão</strong><p>Favoritos, progresso e checklists.</p></div><div class="road"><b>1.0</b><strong>App completo</strong><p>Material interativo de estudo e carreira.</p></div></div></div>
+  </section>
+</main>
+<div class="float">
+  <a class="btn" href="#top" aria-label="Voltar ao topo">↑</a>
+  <button class="btn" id="mobileMenuBtn" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button>
+</div>
+
+<div class="drawerBackdrop" id="drawerBackdrop" hidden></div>
+<nav class="mobileDrawer" id="mobileDrawer" aria-label="Menu rápido" hidden>
+  <div class="drawerHead">
+    <div><strong>Menu rápido</strong><span>Atalhos de estudo e navegação</span></div>
+    <button class="drawerClose" id="drawerClose" type="button" aria-label="Fechar menu">×</button>
+  </div>
+  <div class="drawerLinks">
+    <a href="#top" data-drawer-link>Topo <small>visão geral</small></a>
+    <a href="#disciplinas" data-drawer-link>Disciplinas <small>busca e filtros</small></a>
+    <a href="#biblioteca" data-drawer-link>Biblioteca de docs <small>entregáveis técnicos</small></a>
+    <button type="button" id="drawerExpand">Expandir/Recolher cards <small>consulta rápida</small></button>
+    <button type="button" id="drawerFocus">Ativar/Desativar foco <small>mobile limpo</small></button>
+    <button type="button" id="drawerTheme">Alternar tema <small>claro/escuro</small></button>
+  </div>
+</nav>
+
+<div class="studyBackdrop" id="studyBackdrop" hidden>
+  <section class="studyModal" role="dialog" aria-modal="true" aria-label="Modo aula">
+    <div class="studyHeader">
+      <div><h3 id="studyTitle">Modo aula</h3><p id="studySubtitle">Sequência guiada de estudo</p></div>
+      <button class="studyClose" id="studyClose" type="button" aria-label="Fechar modo aula">×</button>
+    </div>
+    <div class="studyBody" id="studyBody"></div>
+  </section>
+</div>
+
+<nav class="bottomNav" aria-label="Navegação inferior mobile">
+  <a href="#top" aria-label="Ir ao início"><b>⌂</b>Início</a>
+  <button type="button" id="bottomStudy" aria-label="Ir para estudar"><b>▦</b>Estudar</button>
+  <a href="#biblioteca" aria-label="Ir para biblioteca"><b>▤</b>Docs</a>
+  <button type="button" id="bottomFocus" aria-label="Alternar foco"><b>◎</b>Foco</button>
+  <button type="button" id="bottomMenu" aria-label="Abrir menu"><b>☰</b>Menu</button>
+</nav>
+
+<footer class="footer wrap"><strong>VS Consulting · Ciência da Computação</strong><br>Material de consulta, estudo, portfólio e planejamento profissional.</footer>
+<script>
+const paths={
+ 'Desenvolvimento':['Algoritmos','Estruturas de dados','Engenharia de Software','APIs','Testes','GitHub'],
+ 'Dados/IA':['Matemática','Banco de Dados','Estatística','Machine Learning','Big Data','Dashboards'],
+ 'Cloud/Infra':['Sistemas Operacionais','Redes','Containers','Sistemas Distribuídos','Segurança','Performance'],
+ 'Produto/UX':['Design Thinking','Requisitos','IHC','Projetos','Negócios Digitais','Comunicação'],
+ 'Computação Profunda':['Teoria','Autômatos','Grafos','Tradutores','Criptografia','Alto Desempenho']
+};
+
+const base = [
+['61243','Computação: Conceitos e Tendências da Profissão',['Desenvolvimento','Dados/IA','Produto/UX'],'Fundamentos','Base','Nenhum','Introduz a computação como campo científico, tecnológico e profissional.',['História da computação','Áreas da computação','IA','Cloud','Segurança','Carreiras'],['Comparar papéis de dev, cientista de dados e arquiteto','Mapear frontend, backend, banco e cloud em um app'],['GitHub','VS Code','Linux','Cloud','IA generativa'],'Mapa visual das áreas da computação e três trilhas de carreira.',['Explicar Ciência da Computação','Diferenciar áreas de tecnologia','Relacionar tendências com carreira']],
+['61222','Matemática para Computação',['Dados/IA','Computação Profunda'],'Matemática','Base','Matemática básica','Base discreta para algoritmos, lógica, grafos, criptografia e IA.',['Conjuntos','Relações','Funções','Combinatória','Indução','Grafos'],['Calcular combinações de senhas','Representar redes sociais como grafos'],['Python','Jupyter','SymPy','NetworkX'],'Notebook com conjuntos, relações, funções, combinações e grafo simples.',['Operar conjuntos','Interpretar relações','Aplicar combinatória','Entender matemática discreta']],
+['61221','Raciocínio Lógico',['Desenvolvimento','Computação Profunda'],'Fundamentos','Base','Nenhum','Transforma problemas em proposições, condições e inferências consistentes.',['Proposições','Conectivos','Tabelas-verdade','Implicação','Equivalência','Lógica booleana'],['Validar regra de negócio','Usar AND, OR e NOT em código'],['Python','JavaScript','Pseudocódigo','Fluxogramas'],'Validador de regras de negócio em Python ou JavaScript.',['Montar tabelas-verdade','Negar proposições','Converter regras em lógica','Usar operadores booleanos']],
+['61244','Processo de Software',['Desenvolvimento','Produto/UX'],'Engenharia','Base','Nenhum','Mostra como softwares são planejados, desenvolvidos, testados e mantidos.',['Ciclo de vida','Cascata','Ágil','Scrum','Kanban','Qualidade','Versionamento'],['Criar backlog','Definir critérios de aceite','Organizar releases'],['GitHub','Trello','Jira','Notion','Git'],'Processo completo de desenvolvimento de um mini-SaaS.',['Entender ciclo de vida','Diferenciar modelos','Organizar backlog','Documentar entregas']],
+['10545','Pensamento Projetual e Criativo',['Produto/UX','Desenvolvimento'],'Produto','Base','Nenhum','Resolve problemas com empatia, ideação, prototipação e teste.',['Design thinking','Pesquisa com usuários','Personas','Jornada','Ideação','Prototipação'],['Criar persona','Mapear jornada','Transformar dor em oportunidade'],['Figma','FigJam','Miro','Canva','Notion'],'Persona, jornada, matriz de dores e protótipo inicial.',['Investigar problema','Criar persona','Prototipar','Testar hipótese']],
+['10546','Ética e Tecnocultura',['Produto/UX','Dados/IA','Cloud/Infra'],'Humanidades','Base','Nenhum','Analisa impactos sociais, culturais, políticos e éticos da tecnologia.',['Privacidade','Dados pessoais','Viés algorítmico','Inclusão digital','Cultura de plataformas'],['Avaliar reconhecimento facial','Discutir coleta excessiva de dados'],['LGPD','Matriz de risco','Frameworks de ética em IA'],'Matriz de riscos éticos para app que coleta dados pessoais.',['Identificar riscos éticos','Explicar privacidade','Reconhecer vieses','Propor mitigação']],
+['61220','Algoritmos e Programação: Fundamentos',['Desenvolvimento','Dados/IA'],'Programação','Base','Raciocínio lógico','Ensina a transformar problemas em algoritmos e código.',['Variáveis','Tipos','Condicionais','Laços','Funções','Vetores','Depuração'],['Calculadora','Média de notas','Controle financeiro simples'],['Python','JavaScript','VS Code','GitHub'],'Sistema simples de receitas, despesas e saldo em Python.',['Criar algoritmos','Usar if/else','Usar loops','Criar funções','Depurar erros']],
+['21160','Cultura e Ecologia Integral',['Produto/UX'],'Humanidades','Base','Nenhum','Relaciona tecnologia, sociedade, sustentabilidade e impacto socioambiental.',['Sustentabilidade','Ecologia integral','ESG','Consumo digital','Impacto socioambiental'],['Analisar energia de data centers','Discutir descarte eletrônico'],['Matriz ESG','Indicadores de sustentabilidade'],'Matriz de impacto socioambiental de um produto digital.',['Identificar impactos','Relacionar tecnologia e ambiente','Propor soluções sustentáveis']],
+['61001','Pensamento Computacional',['Desenvolvimento','Dados/IA'],'Fundamentos','Base','Nenhum','Desenvolve decomposição, abstração, reconhecimento de padrões e algoritmização.',['Decomposição','Abstração','Padrões','Automação','Fluxogramas'],['Transformar rotina financeira em fluxo','Automatizar coleta de dados'],['Fluxogramas','Python','Power Automate','Planilhas'],'Converter rotina empresarial em fluxo, pseudocódigo e automação.',['Decompor problemas','Abstrair o essencial','Criar fluxo lógico','Pensar automação']],
+['61223','Fundamentos de Sistemas Operacionais',['Cloud/Infra','Desenvolvimento'],'Infraestrutura','Base','Computação básica','Explica como o sistema operacional gerencia processos, memória, arquivos e dispositivos.',['Processos','Threads','Memória','Arquivos','Escalonamento','Kernel','Permissões'],['Ver processos ativos','Configurar permissões no Linux'],['Linux','Windows','Terminal','Bash','Docker'],'Laboratório Linux com processos, arquivos, permissões e monitoramento.',['Explicar SO','Entender processos','Usar terminal','Gerenciar permissões']],
+['31293','Textos de Comunicação da Ciência',['Produto/UX','Computação Profunda'],'Comunicação','Base','Leitura e escrita básica','Desenvolve comunicação acadêmica e técnica para explicar ciência e tecnologia.',['Escrita científica','Resumo','Artigo','Argumentação','Referências','Coesão'],['Resumo de artigo de IA','Introdução de TCC','Relatório técnico'],['Word','Google Docs','Zotero','Markdown'],'Resumo expandido sobre computação aplicada a negócios ou dados.',['Estruturar texto técnico','Usar referências','Explicar conceitos','Comunicar resultados']],
+['61224','Engenharia de Software: Requisitos',['Desenvolvimento','Produto/UX'],'Engenharia','Base','Processo de software','Identifica, documenta, valida e gerencia necessidades dos usuários e do negócio.',['Elicitação','Requisitos funcionais','Não funcionais','User stories','Critérios de aceite'],['Escrever user stories','Definir regra de negócio'],['Jira','Trello','Notion','Miro','GitHub Issues'],'Documento de requisitos para um dashboard empresarial.',['Diferenciar requisitos','Criar histórias','Definir aceite','Validar stakeholders']],
+['61225','Algoritmos e Programação: Estruturas Lineares',['Desenvolvimento','Computação Profunda'],'Programação','Intermediária','Algoritmos fundamentos','Aprofunda arrays, listas, pilhas, filas e listas encadeadas.',['Arrays','Listas','Pilhas','Filas','Deques','Listas encadeadas'],['Fila de atendimento','Histórico de navegação com pilha'],['Python','JavaScript','Java','C'],'Simulador de fila de atendimento com tempo médio.',['Usar listas','Implementar pilhas','Implementar filas','Escolher estrutura adequada']],
+['61009','Cálculo Diferencial',['Dados/IA','Computação Profunda'],'Matemática','Intermediária','Funções e matemática básica','Estuda taxas de variação, limites, derivadas e otimização.',['Funções','Limites','Derivadas','Taxa de variação','Máximos e mínimos'],['Crescimento de usuários','Otimização de custo','Curva de erro em ML'],['Python','NumPy','SymPy','GeoGebra'],'Notebook com funções, derivadas e máximos/mínimos.',['Entender derivada','Interpretar variação','Aplicar otimização','Relacionar com IA']],
+['61245','Análise e Aplicação de Sistemas Operacionais',['Cloud/Infra'],'Infraestrutura','Intermediária','Fundamentos de SO','Aplica sistemas operacionais em administração, scripts, logs e ambientes reais.',['Shell','Serviços','Logs','Usuários','Permissões','Scripts','Containers'],['Script de backup','Monitorar CPU/memória','Rodar app com Docker'],['Linux','Bash','PowerShell','Docker','WSL'],'Ambiente Linux com app web, logs, backup e monitoramento.',['Operar terminal','Ler logs','Automatizar tarefas','Configurar ambiente']],
+['61229','Fundamentos de Banco de Dados',['Dados/IA','Desenvolvimento'],'Dados','Base','Lógica e modelagem básica','Introduz modelagem, armazenamento, relacionamento e consulta de dados estruturados.',['Modelo relacional','Entidades','Relacionamentos','Chaves','Normalização','SQL'],['Clientes e pedidos','Consultar vendas por período'],['PostgreSQL','MySQL','SQLite','Supabase','DBeaver'],'Banco financeiro com usuários, categorias, receitas e despesas.',['Modelar entidades','Criar tabelas','Usar SELECT','Entender chaves','Normalizar']],
+['61226','Engenharia de Software: Análise',['Desenvolvimento','Produto/UX'],'Engenharia','Intermediária','Requisitos','Transforma requisitos em modelos de análise de comportamento, estrutura e regras.',['Modelagem de domínio','Casos de uso','UML','Classes conceituais','Fluxos'],['Casos de uso para app','Fluxo de aprovação e pagamento'],['Draw.io','Mermaid','PlantUML','Miro'],'Modelo de análise para dashboard de Trello.',['Criar casos de uso','Modelar domínio','Representar fluxos','Documentar regras']],
+['61008','Fundamentos de Álgebra Linear',['Dados/IA','Computação Profunda'],'Matemática','Intermediária','Matemática para Computação','Estuda vetores, matrizes e transformações, base de IA, gráficos e dados.',['Vetores','Matrizes','Sistemas lineares','Transformações','Autovalores'],['Imagem como matriz','Cliente como vetor','Embeddings'],['Python','NumPy','Jupyter','scikit-learn'],'Notebook com vetores e matrizes aplicados a dados e imagens.',['Operar matrizes','Entender vetores','Resolver sistemas','Conectar com IA']],
+['60510','Elaboração de Projetos',['Produto/UX','Dados/IA'],'Projetos','Intermediária','Comunicação científica','Estrutura projetos acadêmicos, técnicos e aplicados com problema, objetivo, método e entregas.',['Tema','Problema','Justificativa','Objetivos','Metodologia','Cronograma'],['Projeto de dashboard','Pré-projeto de TCC','MVP de aplicativo'],['Notion','Trello','GitHub Projects','Zotero'],'Pré-projeto de TCC com problema, objetivos, metodologia e cronograma.',['Definir problema','Criar objetivos','Justificar','Planejar método']],
+['61231','Redes de Computadores: Aplicação e Transporte',['Cloud/Infra','Desenvolvimento'],'Infraestrutura','Intermediária','Sistemas operacionais','Explica comunicação entre aplicações por protocolos, camadas, portas e cliente-servidor.',['TCP/IP','HTTP','HTTPS','DNS','TCP','UDP','Portas','APIs'],['Analisar requisição HTTP','Testar API','Comparar TCP e UDP'],['Wireshark','Postman','curl','DevTools','ping'],'API simples documentando cliente, servidor, HTTP, rotas e respostas.',['Explicar HTTP','Entender DNS','Diferenciar TCP/UDP','Testar API']],
+['61246','Projeto de Sistemas Digitais',['Computação Profunda','Cloud/Infra'],'Hardware','Intermediária','Raciocínio lógico','Introduz lógica digital, portas, circuitos e fundamentos dos componentes computacionais.',['Binário','Portas lógicas','Álgebra booleana','Circuitos','Flip-flops'],['Somador binário','Tabela-verdade','Circuito lógico'],['Logisim','Simuladores digitais','Verilog básico'],'Simular circuito somador com tabela-verdade.',['Entender binário','Interpretar portas','Montar tabela-verdade','Simular circuito']],
+['61241','Paradigmas de Programação',['Desenvolvimento','Computação Profunda'],'Programação','Intermediária','Algoritmos fundamentos','Apresenta estilos procedural, orientado a objetos, funcional e lógico.',['Procedural','OO','Funcional','Lógico','Recursão','Imutabilidade'],['Resolver problema em três paradigmas','Criar classes','Usar funções puras'],['Python','JavaScript','Java','Haskell','Prolog'],'Calculadora de orçamento em estilos procedural, OO e funcional.',['Diferenciar paradigmas','Criar classes','Usar funções puras','Avaliar estilos']],
+['61232','Design de Interação Humano-Computador',['Produto/UX','Desenvolvimento'],'Produto','Intermediária','Pensamento projetual','Projeta interfaces úteis, acessíveis e agradáveis a partir da interação humano-computador.',['Usabilidade','Acessibilidade','Heurísticas','Protótipos','Testes com usuários'],['Avaliar tela de login','Fluxo de onboarding','Heurísticas de Nielsen'],['Figma','Maze','Hotjar','FigJam'],'Protótipo de dashboard com teste de usabilidade.',['Projetar interface','Aplicar heurísticas','Pensar acessibilidade','Testar usuários']],
+['61233','Algoritmos e Programação: Árvores e Ordenação',['Desenvolvimento','Computação Profunda'],'Programação','Avançada','Estruturas lineares','Aprofunda árvores, algoritmos de ordenação, busca e organização hierárquica.',['Árvores','BST','Ordenação','Busca','Recursão','Complexidade'],['Menu hierárquico','Ordenar ranking','Buscar em árvore'],['Python','Java','C','Visualizadores'],'Visualizador de algoritmos de ordenação e busca em árvore.',['Implementar ordenação','Entender árvores','Usar recursão','Analisar complexidade']],
+['61251','Inteligência Artificial e Aprendizado de Máquina',['Dados/IA'],'IA','Avançada','Álgebra, cálculo, banco e estatística','Cria sistemas capazes de aprender padrões, prever resultados e apoiar decisões.',['Supervisionado','Não supervisionado','Regressão','Classificação','Métricas','Overfitting'],['Prever preço','Classificar churn','Agrupar clientes'],['Python','pandas','scikit-learn','Jupyter'],'Modelo preditivo com dataset real, métricas e relatório.',['Preparar dados','Treinar modelo','Avaliar métricas','Evitar overfitting','Explicar resultado']],
+['61234','Engenharia de Software: Projeto',['Desenvolvimento','Cloud/Infra'],'Engenharia','Avançada','Análise de software','Transforma análise em arquitetura, módulos, interfaces e padrões técnicos.',['Arquitetura','Componentes','Padrões de projeto','Diagramas','APIs','Modularidade'],['Arquitetura de app','Definir módulos','Contrato de API'],['Mermaid','Draw.io','C4 Model','Swagger','GitHub'],'Documento de arquitetura para app full-stack.',['Projetar módulos','Criar diagramas','Definir interfaces','Pensar escalabilidade']],
+['61252','Sistemas de Gerência de Banco de Dados',['Dados/IA','Cloud/Infra'],'Dados','Avançada','Fundamentos de banco de dados','Aprofunda transações, índices, concorrência, segurança e desempenho em bancos.',['Transações','ACID','Índices','Concorrência','Otimização','Backup'],['Criar índice','Analisar query lenta','Simular transação'],['PostgreSQL','EXPLAIN','DBeaver','pgAdmin'],'Laboratório de otimização SQL com índices e EXPLAIN.',['Entender ACID','Criar índices','Otimizar query','Pensar backup']],
+['61057','Controle Estatístico da Qualidade',['Dados/IA'],'Dados','Intermediária','Estatística básica','Usa estatística para monitorar variações, controlar processos e melhorar qualidade.',['Variabilidade','Amostragem','Cartas de controle','Capabilidade','Indicadores'],['Monitorar defeitos','Tempo de atendimento','Controle de produção'],['Excel','Python','pandas','Power BI'],'Dashboard de qualidade com médias, desvios e alertas.',['Entender variação','Criar indicadores','Interpretar controle','Usar estatística aplicada']],
+['61247','Análise e Projeto de Algoritmos',['Computação Profunda','Desenvolvimento'],'Computação Profunda','Avançada','Estruturas de dados','Estuda eficiência, complexidade, estratégias algorítmicas e escolha de soluções.',['Big O','Dividir e conquistar','Programação dinâmica','Guloso','Busca','Ordenação'],['Comparar algoritmos','Otimizar busca','Programação dinâmica'],['Python','Visualgo','Benchmarking'],'Benchmark comparativo de algoritmos com relatório de complexidade.',['Calcular Big O','Comparar soluções','Projetar algoritmo eficiente','Medir desempenho']],
+['61248','Linguagens Formais e Autômatos',['Computação Profunda'],'Teoria','Avançada','Matemática discreta e lógica','Fundamenta linguagens, gramáticas, autômatos e compiladores.',['Alfabetos','Linguagens','Gramáticas','Autômatos finitos','Expressões regulares'],['Validador de padrão textual','Autômato para reconhecer tokens'],['JFLAP','Regex','Simuladores'],'Autômato para validar padrões de entrada.',['Entender gramáticas','Criar autômatos','Reconhecer linguagens','Relacionar com compiladores']],
+['61034','Cálculo Integral',['Dados/IA','Computação Profunda'],'Matemática','Avançada','Cálculo diferencial','Estuda acumulação, áreas, integrais e aplicações em modelos contínuos.',['Integrais','Área sob curva','Acumulação','Métodos de integração','Aplicações'],['Acumular receita no tempo','Distribuição contínua'],['Python','SymPy','GeoGebra','Jupyter'],'Notebook com integrais, áreas sob curvas e aplicações em dados.',['Interpretar integral','Calcular casos básicos','Relacionar acumulação e modelos']],
+['61249','Processamento Gráfico',['Computação Profunda','Produto/UX'],'Gráficos','Avançada','Álgebra linear','Manipula imagens, formas e elementos visuais por processamento computacional.',['Pixels','Vetores','Transformações','Filtros','Imagem digital'],['Aplicar filtro em imagem','Transformar coordenadas','Manipular pixels'],['Python','OpenCV','Canvas','Processing'],'Editor simples de imagem com filtros básicos.',['Entender pixels','Manipular imagem','Aplicar filtros','Relacionar com visão computacional']],
+['61253','Arquitetura de Sistemas Digitais',['Computação Profunda','Cloud/Infra'],'Hardware','Avançada','Sistemas digitais','Aprofunda estrutura interna de computadores, processadores, memória e execução.',['CPU','Memória','Registradores','Barramentos','Instruções','Pipeline','Cache'],['Gargalo de CPU','Cache vs RAM','Ciclo de instrução'],['Simuladores MIPS/RISC-V','Assembly básico'],'Mapa visual de arquitetura simplificada com fluxo de instrução.',['Explicar CPU','Entender memória/cache','Descrever execução','Relacionar hardware e desempenho']],
+['50835','Empreendedorismo e Solução de Problemas',['Produto/UX'],'Negócios','Intermediária','Pensamento projetual','Conecta tecnologia, inovação, oportunidade, modelo de negócio e validação.',['Problema','Oportunidade','Modelo de negócio','MVP','Validação','Pitch'],['Canvas de startup','Teste de hipótese','MVP de app'],['Business Model Canvas','Lean Canvas','Figma','Notion'],'MVP conceitual com problema, público, proposta de valor e validação.',['Identificar problema','Criar proposta de valor','Desenhar MVP','Validar hipótese']],
+['61254','Teoria da Computação',['Computação Profunda'],'Teoria','Avançada','Autômatos e algoritmos','Estuda limites do que pode ser computado, decidibilidade e complexidade.',['Máquina de Turing','Computabilidade','Decidibilidade','Complexidade','Problemas intratáveis'],['Problemas insolúveis','Limites de algoritmos'],['Simuladores teóricos','Diagramas formais'],'Ensaio visual sobre problemas computáveis, decidíveis e intratáveis.',['Entender computabilidade','Explicar Máquina de Turing','Reconhecer limites']],
+['61250','Estágio',['Desenvolvimento','Dados/IA','Cloud/Infra','Produto/UX'],'Prática','Aplicada','Aprovação nos 1º ao 4º semestres','Integra competências do curso em ambiente profissional real.',['Prática profissional','Relatório','Competências','Entrega real','Supervisão'],['Desenvolver módulo','Criar dashboard','Participar de sprint'],['GitHub','Trello/Jira','Stack real','Documentação'],'Portfólio do estágio com problema, ações, entregas e tecnologias.',['Documentar atividades','Evidenciar competências','Relacionar prática com teoria','Gerar portfólio']],
+['61255','Algoritmos e Programação: Grafos, Hashing e Heaps',['Desenvolvimento','Computação Profunda','Dados/IA'],'Programação','Avançada','Árvores e ordenação','Estruturas avançadas para redes, busca eficiente, prioridades, caminhos e indexação.',['Grafos','BFS','DFS','Dijkstra','Hash tables','Heaps'],['Rotas em mapa','Rede social','Cache por hash','Ranking com heap'],['Python','NetworkX','Visualgo'],'Simulador de rotas usando grafos e menor caminho.',['Modelar grafos','Aplicar BFS/DFS','Usar hashing','Implementar heap']],
+['61261','Tradutores',['Computação Profunda'],'Teoria','Avançada','Autômatos e programação','Estuda compiladores, interpretadores e tradução de linguagens.',['Análise léxica','Análise sintática','Tokens','Gramáticas','AST','Geração de código'],['Criar lexer','Interpretar expressão matemática','Gerar árvore sintática'],['ANTLR','Flex/Bison','Python','JavaScript'],'Mini-interpretador de expressões com lexer, parser e AST.',['Entender tokens','Criar parser simples','Gerar AST','Relacionar com compiladores']],
+['61256','Engenharia de Software: Implementação e Testes',['Desenvolvimento'],'Engenharia','Avançada','Projeto de software','Constrói software com qualidade, testes, integração, revisão e manutenção.',['Testes unitários','Integração','Mocks','Refatoração','CI/CD','Qualidade'],['Testes para API','Pipeline CI','Refatorar módulo'],['Jest','Pytest','GitHub Actions','ESLint','SonarQube'],'API com testes automatizados, cobertura e CI.',['Escrever testes','Rodar CI','Refatorar','Medir qualidade','Documentar implementação']],
+['61262','Computação de Alto Desempenho',['Cloud/Infra','Computação Profunda','Dados/IA'],'Infraestrutura','Avançada','Algoritmos e sistemas','Aumenta desempenho por paralelismo, otimização e uso eficiente de recursos.',['Paralelismo','Threads','GPU','Clusters','Performance','Benchmark'],['Processamento paralelo','Sequencial vs paralelo','Otimização'],['Python multiprocessing','C/C++','CUDA básico','Benchmarks'],'Comparativo de desempenho entre solução sequencial e paralela.',['Medir desempenho','Entender paralelismo','Identificar gargalos','Otimizar processamento']],
+['61257','Teoria da Informação: Compressão e Criptografia',['Computação Profunda','Cloud/Infra'],'Segurança/Dados','Avançada','Matemática e algoritmos','Estuda entropia, compressão, codificação e fundamentos de criptografia.',['Entropia','Huffman','Compressão','Criptografia simétrica','Assimétrica','Hashes'],['Compactar texto','Calcular entropia','Simular cifra'],['Python','Bibliotecas crypto','Notebooks'],'App didático com Huffman, entropia e cifras simples.',['Entender entropia','Aplicar compressão','Explicar criptografia','Diferenciar hash e cifra']],
+['61258','Redes de Computadores: Internetworking, Roteamento e Transmissão',['Cloud/Infra'],'Infraestrutura','Avançada','Redes aplicação/transporte','Aprofunda roteamento, endereçamento, transmissão e interconexão de redes.',['IP','Sub-redes','Roteamento','Enlace','Transmissão','NAT','VLAN'],['Planejar sub-rede','Entender roteador','Diagnosticar conectividade'],['Packet Tracer','Wireshark','ping','traceroute'],'Simulação de rede com sub-redes, roteamento e documentação.',['Entender IP','Calcular sub-redes','Explicar roteamento','Diagnosticar rede']],
+['61263','Internet das Coisas: Sensores, Protocolos e Aplicações',['Cloud/Infra','Dados/IA'],'IoT','Avançada','Redes e sistemas','Conecta sensores, dispositivos, protocolos, dados e aplicações inteligentes.',['Sensores','Microcontroladores','MQTT','HTTP','Edge','Dados em tempo real'],['Monitorar temperatura','Enviar dados via MQTT','Dashboard de sensores'],['Arduino','ESP32','MQTT','Node-RED','Python'],'Protótipo IoT com sensor, envio de dados e dashboard.',['Entender sensores','Usar protocolo IoT','Coletar dados','Criar dashboard']],
+['61259','Computação Gráfica',['Computação Profunda','Produto/UX'],'Gráficos','Avançada','Álgebra linear e processamento gráfico','Gera imagens, cenas, objetos, transformações, iluminação e renderização.',['2D/3D','Transformações','Câmera','Iluminação','Renderização','Malhas'],['Cena 3D','Rotacionar objeto','Renderizar forma geométrica'],['WebGL','Three.js','Blender','OpenGL'],'Cena 3D interativa com objeto, câmera, luz e controles.',['Entender transformações','Criar cena','Manipular câmera','Relacionar matemática e gráficos']],
+['61264','Ciência de Dados e Big Data',['Dados/IA'],'Dados','Avançada','Banco, estatística e programação','Coleta, trata, analisa, visualiza e processa grandes volumes de dados.',['ETL','Dataframes','Visualização','Big Data','Pipelines','Governança'],['Dashboard de Trello','Análise de vendas','Pipeline de dados'],['Python','pandas','SQL','Power BI','Spark básico'],'Dashboard analítico com extração, limpeza, indicadores e visualizações.',['Limpar dados','Criar métricas','Visualizar','Montar pipeline','Contar história com dados']],
+['61242','Sistemas Distribuídos',['Cloud/Infra','Desenvolvimento'],'Infraestrutura','Avançada','Redes, SO e banco','Sistemas compostos por múltiplos computadores colaborando com escala e resiliência.',['Distribuição','Consistência','Replicação','Mensageria','Microsserviços','Falhas'],['Fila de mensagens','API com serviços separados','Replicação de dados'],['Docker','Kubernetes','RabbitMQ','Kafka','Redis'],'Mini arquitetura distribuída com API, fila, worker e banco.',['Entender serviços','Lidar com falhas','Usar mensageria','Pensar escalabilidade']],
+['61265','Simulação e Modelagem de Sistemas',['Dados/IA','Computação Profunda'],'Dados','Avançada','Estatística e programação','Usa modelos computacionais para representar, simular e analisar sistemas reais.',['Modelagem','Simulação discreta','Filas','Cenários','Parâmetros','Validação'],['Fila de atendimento','Estoque','Cenários de operação'],['Python','SimPy','Excel','AnyLogic básico'],'Simulador de fila/produção com cenários e relatório de decisão.',['Modelar sistema','Definir parâmetros','Rodar simulação','Interpretar cenários']],
+['61260','Trabalho de Conclusão de Curso I',['Desenvolvimento','Dados/IA','Cloud/Infra','Produto/UX'],'TCC','Aplicada','Elaboração de Projetos e 148 créditos','Estrutura o projeto final com problema, base teórica, método e proposta.',['Problema','Objetivos','Referencial','Metodologia','Cronograma','Protótipo inicial'],['TCC sobre IA aplicada a negócios','Dashboard preditivo'],['Zotero','GitHub','Notion','Word/Overleaf'],'Projeto completo de TCC com escopo, método, revisão e plano.',['Definir tema','Criar problema','Revisar literatura','Planejar método']],
+['61266','Trabalho de Conclusão de Curso II',['Desenvolvimento','Dados/IA','Cloud/Infra','Produto/UX'],'TCC','Aplicada','TCC I','Executa, valida, documenta e apresenta o projeto final.',['Implementação','Experimentos','Resultados','Discussão','Conclusão','Apresentação'],['Desenvolver sistema','Avaliar modelo','Testar usuários'],['GitHub','Deploy','Power BI','Python','React'],'Entrega final com software, relatório, apresentação e repositório.',['Executar projeto','Validar resultados','Documentar','Apresentar','Publicar portfólio']],
+['90152','Cultura Surda e LIBRAS',['Produto/UX'],'Optativa','Base','Nenhum','Amplia inclusão, comunicação e acessibilidade para pessoas surdas.',['LIBRAS','Cultura Surda','Acessibilidade','Comunicação inclusiva'],['Pensar interface acessível','Criar legenda e suporte visual'],['Materiais de LIBRAS','Guias de acessibilidade'],'Checklist de acessibilidade comunicacional para produto digital.',['Compreender cultura surda','Reconhecer barreiras','Propor inclusão']],
+['10531','Inclusão e Acessibilidade em Contextos Profissionais',['Produto/UX'],'Optativa','Base','Nenhum','Trata inclusão, acessibilidade e adaptação de ambientes profissionais.',['Acessibilidade','Inclusão','Barreiras','Adaptação','Diversidade'],['Auditar tela por acessibilidade','Propor ajustes em processo'],['WCAG','Checklist UX','Leitores de tela'],'Auditoria de acessibilidade de um sistema web.',['Identificar barreiras','Aplicar princípios inclusivos','Propor melhorias']],
+['10544','Educação das Relações Étnicoraciais',['Produto/UX'],'Optativa','Base','Nenhum','Discute diversidade, relações étnico-raciais e responsabilidade social.',['Diversidade','Racismo estrutural','Representatividade','Educação antirracista'],['Avaliar vieses em produto','Analisar linguagem inclusiva'],['Matriz de diversidade','Guias de linguagem'],'Matriz de riscos de viés em produto digital.',['Reconhecer vieses','Pensar representatividade','Propor mitigação']],
+['50384','Relações Interpessoais',['Produto/UX'],'Optativa','Base','Nenhum','Desenvolve comunicação, colaboração e convivência profissional.',['Comunicação','Empatia','Conflitos','Colaboração','Feedback'],['Reuniões de projeto','Feedback em equipe','Mediação de conflito'],['Matriz de comunicação','Canvas de equipe'],'Guia de comunicação para time de desenvolvimento.',['Comunicar com clareza','Dar feedback','Colaborar','Lidar com conflitos']],
+['50282','Liderança nas Organizações',['Produto/UX'],'Optativa','Intermediária','Nenhum','Desenvolve liderança, gestão de equipes e influência organizacional.',['Liderança','Motivação','Cultura','Gestão de equipes','Decisão'],['Liderar sprint','Definir rituais de time','Alinhar objetivos'],['OKRs','1:1','Kanban','Matriz RACI'],'Plano de liderança para equipe de produto/tecnologia.',['Definir direção','Acompanhar equipe','Comunicar prioridades','Tomar decisões']],
+['60666','Arquitetura da Informação',['Produto/UX','Desenvolvimento'],'Optativa','Intermediária','IHC recomendado','Organiza conteúdos, navegação e estruturas informacionais de produtos digitais.',['Taxonomia','Navegação','Rotulagem','Busca','Hierarquia','Card sorting'],['Organizar menu de app','Criar taxonomia de dashboard'],['Figma','Miro','Card sorting','Sitemaps'],'Arquitetura da informação para portal de dados.',['Criar taxonomia','Organizar navegação','Pensar busca','Validar estrutura']],
+['61315','Modelos de Melhoria de Processo de Software',['Desenvolvimento','Produto/UX'],'Optativa','Intermediária','Processo de software','Aprimora processos de desenvolvimento com maturidade, métricas e qualidade.',['CMMI','MPS.BR','Maturidade','Métricas','Melhoria contínua'],['Diagnóstico de processo','Plano de melhoria de time'],['Matriz de maturidade','KPIs','Retrospectivas'],'Scorecard de maturidade de processo de software.',['Avaliar processo','Definir métricas','Propor melhoria','Acompanhar evolução']],
+['61228','Direito e Tecnologia da Informação',['Cloud/Infra','Produto/UX','Dados/IA'],'Optativa','Intermediária','Nenhum','Relaciona tecnologia com direitos, responsabilidades, privacidade e regulação.',['LGPD','Direitos autorais','Contratos digitais','Responsabilidade civil','Compliance'],['Política de privacidade','Termos de uso','Risco legal de IA'],['LGPD','Mapas de dados','Checklists jurídicos'],'Checklist jurídico básico para app que coleta dados.',['Entender privacidade','Identificar risco legal','Propor controles']],
+['60425','Comércio Eletrônico',['Produto/UX','Desenvolvimento'],'Optativa','Intermediária','Banco e web recomendados','Estuda modelos, operações e tecnologias de venda digital.',['E-commerce','Pagamentos','Funil','Conversão','Catálogo','Logística'],['Loja online','Checkout','Dashboard de vendas'],['Shopify','WooCommerce','APIs de pagamento','Analytics'],'Protótipo de e-commerce com catálogo, carrinho e indicadores.',['Entender operação digital','Mapear jornada de compra','Pensar conversão']],
+['60430','Gerência de Configuração de Software',['Desenvolvimento','Cloud/Infra'],'Optativa','Intermediária','Git básico','Controla versões, mudanças, releases e integridade de artefatos de software.',['Git','Branches','Versionamento','Build','Release','Controle de mudanças'],['GitFlow','Tag de versão','Pipeline de build'],['Git','GitHub','GitLab','CI/CD'],'Fluxo Git completo com branches, releases e changelog.',['Usar branches','Criar release','Gerenciar mudanças','Documentar versão']],
+['60444','Segurança da Informação',['Cloud/Infra','Desenvolvimento','Dados/IA'],'Optativa','Intermediária','Redes e sistemas recomendados','Protege dados, sistemas e organizações contra ameaças digitais.',['Confidencialidade','Integridade','Disponibilidade','Ameaças','Criptografia','Controles'],['Analisar risco de senha fraca','Mapear vulnerabilidade web'],['OWASP','Nmap','Wireshark','Gerenciadores de senha'],'Checklist de segurança para aplicação web.',['Identificar ameaças','Aplicar controles','Entender CIA','Pensar segurança por design']]
+];
+
+const D=base.map(x=>({c:x[0],n:x[1],tr:x[2],cy:x[3],df:x[4],pr:x[5],co:x[6],te:x[7],ex:x[8],fo:x[9],pj:x[10],ck:x[11]}));
+const grid=document.getElementById('grid'), search=document.getElementById('search'), filter=document.getElementById('filter'), chips=document.getElementById('chips'), expand=document.getElementById('expand');
+let active='Todas', expanded=false;
+const allPaths=['Todas',...Object.keys(paths)];
+function arr(a){return '<ul>'+a.map(x=>`<li>${fmt(x)}</li>`).join('')+'</ul>'}
+function setup(){
+ document.getElementById('count').textContent=D.length;
+ allPaths.forEach(p=>{
+   if(p!=='Todas'){const o=document.createElement('option');o.value=p;o.textContent=p;filter.appendChild(o)}
+   const b=document.createElement('button');b.className='chip'+(p==='Todas'?' active':'');b.textContent=p;
+   b.onclick=()=>{active=p;filter.value=p;document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x.textContent===p));render()};
+   chips.appendChild(b)
+ });
+ document.getElementById('paths').innerHTML=Object.entries(paths).map(([k,v])=>`<article class="pathCard"><h3>${k}</h3><ul>${v.map(i=>`<li>${i}</li>`).join('')}</ul></article>`).join('');
+ render()
+}
+
+function demoForTheme(theme,d){
+ const t=theme.toLowerCase();
+ if(t.includes('sql')) return 'Em uma tabela despesas(id, categoria, valor), use SELECT categoria, SUM(valor) FROM despesas GROUP BY categoria para descobrir onde o orçamento está concentrado.';
+ if(t.includes('banco')||t.includes('modelo relacional')||t.includes('entidades')||t.includes('relacionamentos')) return 'Modele Cliente 1:N Pedido e Pedido N:N Produto usando uma tabela intermediária pedido_itens para representar a compra real.';
+ if(t.includes('etl')||t.includes('dataframe')||t.includes('limpar dados')) return 'Carregue uma planilha CSV, remova linhas vazias, padronize datas e gere uma tabela final pronta para análise.';
+ if(t.includes('indicadores')||t.includes('métricas')) return 'Crie três indicadores: total de vendas, ticket médio e taxa de crescimento mensal, explicando a fórmula de cada um.';
+ if(t.includes('algorit')||t.includes('ordenação')) return 'Compare Bubble Sort e Quick Sort ordenando a mesma lista; registre tempo de execução e explique por que um escala melhor.';
+ if(t.includes('busca')) return 'Procure um item em lista simples e depois em estrutura ordenada; compare número de tentativas.';
+ if(t.includes('grafos')||t.includes('bfs')||t.includes('dfs')||t.includes('dijkstra')) return 'Modele cidades como nós e estradas como arestas; use Dijkstra para encontrar o menor caminho entre origem e destino.';
+ if(t.includes('hash')) return 'Crie uma tabela hash para localizar produtos por código sem percorrer a lista inteira.';
+ if(t.includes('heap')) return 'Use uma fila de prioridade para sempre atender primeiro a tarefa mais urgente.';
+ if(t.includes('requisito')||t.includes('user stories')) return 'Transforme “o usuário quer acompanhar gastos” em: Como usuário, quero categorizar despesas para entender meus maiores custos.';
+ if(t.includes('critérios de aceite')) return 'Critério: dado que informei valor e categoria, quando salvar a despesa, então ela deve aparecer no relatório mensal.';
+ if(t.includes('uml')||t.includes('casos de uso')) return 'Desenhe o caso de uso “Gerar relatório financeiro” com ator, pré-condição, fluxo principal e exceções.';
+ if(t.includes('arquitetura')||t.includes('componentes')) return 'Descreva frontend, API, banco de dados e serviço de autenticação, indicando como cada componente se comunica.';
+ if(t.includes('api')) return 'Crie contrato GET /despesas?mes=2026-05 retornando status, lista de despesas e total consolidado.';
+ if(t.includes('teste')) return 'Teste: ao cadastrar despesa negativa, o sistema deve recusar e retornar mensagem de validação.';
+ if(t.includes('ci/cd')) return 'Configure uma pipeline que instala dependências, roda testes e bloqueia deploy se algum teste falhar.';
+ if(t.includes('http')) return 'Abra o DevTools, faça login em um sistema e observe método, status code, headers e payload da requisição.';
+ if(t.includes('dns')) return 'Explique como o navegador transforma exemplo.com em endereço IP antes de abrir a página.';
+ if(t.includes('tcp')||t.includes('udp')) return 'Compare envio de arquivo por TCP com transmissão ao vivo por UDP, destacando confiabilidade e velocidade.';
+ if(t.includes('ip')||t.includes('sub-redes')) return 'Divida uma rede 192.168.0.0/24 em sub-redes menores e explique quantos hosts cada uma comporta.';
+ if(t.includes('processos')||t.includes('memória')) return 'No terminal, liste processos, identifique consumo de memória e explique por que um processo pode travar o sistema.';
+ if(t.includes('permissões')) return 'No Linux, compare chmod 644 e chmod 755 e explique quem pode ler, escrever e executar.';
+ if(t.includes('docker')||t.includes('containers')) return 'Empacote uma API simples em container e documente porta, variáveis de ambiente e comando de execução.';
+ if(t.includes('machine')||t.includes('ia')||t.includes('regressão')||t.includes('classificação')) return 'Treine um modelo para prever churn; se a acurácia for alta, verifique também precisão, recall e matriz de confusão.';
+ if(t.includes('overfitting')) return 'Mostre um modelo com ótimo resultado no treino e ruim no teste, explicando que ele decorou em vez de generalizar.';
+ if(t.includes('derivada')) return 'Use uma curva de custo e mostre que a derivada indica a taxa de variação do custo em cada ponto.';
+ if(t.includes('integral')) return 'Calcule a área sob uma curva de vendas ao longo do tempo para estimar volume acumulado.';
+ if(t.includes('matriz')||t.includes('vetor')) return 'Represente um cliente como vetor [idade, renda, frequência] e compare com outro cliente usando distância.';
+ if(t.includes('persona')) return 'Crie a persona “Ana, analista financeira, precisa reduzir tempo de fechamento mensal”.';
+ if(t.includes('jornada')) return 'Mapeie etapas: percebe problema, procura relatório, filtra dados, exporta planilha e apresenta decisão.';
+ if(t.includes('protótipo')) return 'Desenhe uma tela de dashboard com cards de KPI, filtros e gráfico principal antes de codar.';
+ if(t.includes('usabilidade')) return 'Peça para alguém completar uma tarefa no protótipo e registre onde a pessoa travou.';
+ if(t.includes('acessibilidade')) return 'Teste contraste, navegação por teclado e texto alternativo para elementos visuais.';
+ if(t.includes('privacidade')||t.includes('lgpd')) return 'Liste quais dados pessoais são coletados, por qual finalidade, onde ficam armazenados e quando são apagados.';
+ if(t.includes('viés')) return 'Analise se um modelo de seleção favorece um grupo por causa de dados históricos desequilibrados.';
+ if(t.includes('metodologia')) return 'Defina se o projeto será estudo de caso, experimento, pesquisa aplicada ou desenvolvimento tecnológico.';
+ if(t.includes('objetivos')) return 'Objetivo geral: desenvolver um dashboard. Objetivos específicos: coletar dados, tratar dados, criar indicadores e validar com usuários.';
+ if(t.includes('cronograma')) return 'Monte fases: revisão, modelagem, desenvolvimento, testes, análise e escrita final.';
+ return `Aplique o tema “${theme}” em um problema pequeno da disciplina “${d.n}”, documentando entrada, processo, saída e aprendizado.`;
+}
+
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function rxEsc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
+function fmt(s){
+ const q=search.value.trim();
+ const safe=esc(s);
+ if(!q) return safe;
+ try{return safe.replace(new RegExp(`(${rxEsc(esc(q))})`,'gi'),'<mark class="hl">$1</mark>')}catch{return safe}
+}
+function demoForTheme(theme,d){
+ const t=theme.toLowerCase();
+ if(t.includes('sql')) return 'Em uma tabela despesas(id, categoria, valor), use SELECT categoria, SUM(valor) FROM despesas GROUP BY categoria para descobrir onde o orçamento está concentrado.';
+ if(t.includes('banco')||t.includes('modelo relacional')||t.includes('entidades')||t.includes('relacionamentos')) return 'Modele Cliente 1:N Pedido e Pedido N:N Produto usando uma tabela intermediária pedido_itens para representar a compra real.';
+ if(t.includes('etl')||t.includes('dataframe')||t.includes('limpar dados')) return 'Carregue uma planilha CSV, remova linhas vazias, padronize datas e gere uma tabela final pronta para análise.';
+ if(t.includes('indicadores')||t.includes('métricas')) return 'Crie três indicadores: total de vendas, ticket médio e taxa de crescimento mensal, explicando a fórmula de cada um.';
+ if(t.includes('algorit')||t.includes('ordenação')) return 'Compare Bubble Sort e Quick Sort ordenando a mesma lista; registre tempo de execução e explique por que um escala melhor.';
+ if(t.includes('busca')) return 'Procure um item em lista simples e depois em estrutura ordenada; compare número de tentativas.';
+ if(t.includes('grafos')||t.includes('bfs')||t.includes('dfs')||t.includes('dijkstra')) return 'Modele cidades como nós e estradas como arestas; use Dijkstra para encontrar o menor caminho entre origem e destino.';
+ if(t.includes('hash')) return 'Crie uma tabela hash para localizar produtos por código sem percorrer a lista inteira.';
+ if(t.includes('heap')) return 'Use uma fila de prioridade para sempre atender primeiro a tarefa mais urgente.';
+ if(t.includes('requisito')||t.includes('user stories')) return 'Transforme “o usuário quer acompanhar gastos” em: Como usuário, quero categorizar despesas para entender meus maiores custos.';
+ if(t.includes('critérios de aceite')) return 'Critério: dado que informei valor e categoria, quando salvar a despesa, então ela deve aparecer no relatório mensal.';
+ if(t.includes('uml')||t.includes('casos de uso')) return 'Desenhe o caso de uso “Gerar relatório financeiro” com ator, pré-condição, fluxo principal e exceções.';
+ if(t.includes('arquitetura')||t.includes('componentes')) return 'Descreva frontend, API, banco de dados e serviço de autenticação, indicando como cada componente se comunica.';
+ if(t.includes('api')) return 'Crie contrato GET /despesas?mes=2026-05 retornando status, lista de despesas e total consolidado.';
+ if(t.includes('teste')) return 'Teste: ao cadastrar despesa negativa, o sistema deve recusar e retornar mensagem de validação.';
+ if(t.includes('ci/cd')) return 'Configure uma pipeline que instala dependências, roda testes e bloqueia deploy se algum teste falhar.';
+ if(t.includes('http')) return 'Abra o DevTools, faça login em um sistema e observe método, status code, headers e payload da requisição.';
+ if(t.includes('dns')) return 'Explique como o navegador transforma exemplo.com em endereço IP antes de abrir a página.';
+ if(t.includes('tcp')||t.includes('udp')) return 'Compare envio de arquivo por TCP com transmissão ao vivo por UDP, destacando confiabilidade e velocidade.';
+ if(t.includes('ip')||t.includes('sub-redes')) return 'Divida uma rede 192.168.0.0/24 em sub-redes menores e explique quantos hosts cada uma comporta.';
+ if(t.includes('processos')||t.includes('memória')) return 'No terminal, liste processos, identifique consumo de memória e explique por que um processo pode travar o sistema.';
+ if(t.includes('permissões')) return 'No Linux, compare chmod 644 e chmod 755 e explique quem pode ler, escrever e executar.';
+ if(t.includes('docker')||t.includes('containers')) return 'Empacote uma API simples em container e documente porta, variáveis de ambiente e comando de execução.';
+ if(t.includes('machine')||t.includes('ia')||t.includes('regressão')||t.includes('classificação')) return 'Treine um modelo para prever churn; se a acurácia for alta, verifique também precisão, recall e matriz de confusão.';
+ if(t.includes('overfitting')) return 'Mostre um modelo com ótimo resultado no treino e ruim no teste, explicando que ele decorou em vez de generalizar.';
+ if(t.includes('derivada')) return 'Use uma curva de custo e mostre que a derivada indica a taxa de variação do custo em cada ponto.';
+ if(t.includes('integral')) return 'Calcule a área sob uma curva de vendas ao longo do tempo para estimar volume acumulado.';
+ if(t.includes('matriz')||t.includes('vetor')) return 'Represente um cliente como vetor [idade, renda, frequência] e compare com outro cliente usando distância.';
+ if(t.includes('persona')) return 'Crie a persona “Ana, analista financeira, precisa reduzir tempo de fechamento mensal”.';
+ if(t.includes('jornada')) return 'Mapeie etapas: percebe problema, procura relatório, filtra dados, exporta planilha e apresenta decisão.';
+ if(t.includes('protótipo')) return 'Desenhe uma tela de dashboard com cards de KPI, filtros e gráfico principal antes de codar.';
+ if(t.includes('usabilidade')) return 'Peça para alguém completar uma tarefa no protótipo e registre onde a pessoa travou.';
+ if(t.includes('acessibilidade')) return 'Teste contraste, navegação por teclado e texto alternativo para elementos visuais.';
+ if(t.includes('privacidade')||t.includes('lgpd')) return 'Liste quais dados pessoais são coletados, por qual finalidade, onde ficam armazenados e quando são apagados.';
+ if(t.includes('viés')) return 'Analise se um modelo de seleção favorece um grupo por causa de dados históricos desequilibrados.';
+ if(t.includes('metodologia')) return 'Defina se o projeto será estudo de caso, experimento, pesquisa aplicada ou desenvolvimento tecnológico.';
+ if(t.includes('objetivos')) return 'Objetivo geral: desenvolver um dashboard. Objetivos específicos: coletar dados, tratar dados, criar indicadores e validar com usuários.';
+ if(t.includes('cronograma')) return 'Monte fases: revisão, modelagem, desenvolvimento, testes, análise e escrita final.';
+ return `Aplique o tema “${theme}” em um problema pequeno da disciplina “${d.n}”, documentando entrada, processo, saída e aprendizado.`;
+}
+
+function explainTheme(theme,d){
+ const t=theme.toLowerCase();
+ let what='Conceito-chave que sustenta a disciplina e precisa ser entendido em linguagem simples antes de virar código, análise ou decisão.';
+ let how='Transforme o tema em um exemplo pequeno, depois em exercício e, por fim, em uma entrega documentada.';
+ if(t.includes('sql')||t.includes('banco')||t.includes('dados')||t.includes('dataframe')||t.includes('etl')||t.includes('big data')||t.includes('indicadores')){what='Organiza, consulta, transforma ou interpreta dados para gerar informação confiável.';how='Modele uma base pequena, crie consultas ou limpeza, gere evidências e registre decisões.'}
+ else if(t.includes('algorit')||t.includes('busca')||t.includes('ordenação')||t.includes('grafos')||t.includes('árvore')||t.includes('hash')||t.includes('heap')||t.includes('complexidade')||t.includes('recursão')){what='Define um procedimento eficiente para resolver problemas computacionais com começo, meio, fim e custo conhecido.';how='Implemente, teste entradas diferentes e compare tempo, memória e clareza da solução.'}
+ else if(t.includes('requisito')||t.includes('user')||t.includes('casos de uso')||t.includes('uml')||t.includes('arquitetura')||t.includes('api')||t.includes('teste')||t.includes('ci/cd')||t.includes('modularidade')){what='Converte necessidades do negócio em especificações técnicas, módulos, validações e entregas de software.';how='Documente o fluxo, desenhe diagramas, defina critérios de aceite e conecte com testes.'}
+ else if(t.includes('rede')||t.includes('tcp')||t.includes('http')||t.includes('dns')||t.includes('roteamento')||t.includes('ip')||t.includes('sistemas operacionais')||t.includes('processos')||t.includes('memória')||t.includes('docker')||t.includes('kernel')||t.includes('permissões')){what='Explica como sistemas executam, comunicam, escalam e se mantêm disponíveis.';how='Monte um laboratório com comandos, logs, requisições, medições e diagnóstico.'}
+ else if(t.includes('ia')||t.includes('machine')||t.includes('regressão')||t.includes('classificação')||t.includes('overfitting')||t.includes('métricas')||t.includes('supervisionado')){what='Permite criar modelos que aprendem padrões e apoiam previsões, classificações ou recomendações.';how='Use um dataset real, treine um modelo simples, avalie métricas e explique limitações.'}
+ else if(t.includes('cálculo')||t.includes('derivada')||t.includes('integral')||t.includes('vetor')||t.includes('matriz')||t.includes('funções')||t.includes('limites')||t.includes('autovalores')){what='Fornece linguagem matemática para representar variação, estrutura, transformação e otimização.';how='Resolva manualmente um caso simples e replique em notebook com visualização.'}
+ else if(t.includes('ux')||t.includes('usabilidade')||t.includes('acessibilidade')||t.includes('persona')||t.includes('jornada')||t.includes('protótipo')||t.includes('design')||t.includes('interface')){what='Ajuda a projetar soluções úteis, compreensíveis, inclusivas e centradas nas pessoas.';how='Crie persona, fluxo, tela prototipada e valide com checklist ou teste rápido.'}
+ else if(t.includes('ética')||t.includes('privacidade')||t.includes('lgpd')||t.includes('viés')||t.includes('inclusão')||t.includes('diversidade')||t.includes('responsabilidade')){what='Avalia riscos humanos, legais e sociais envolvidos em soluções tecnológicas.';how='Crie uma matriz de riscos, impactos, controles e responsabilidades.'}
+ else if(t.includes('tcc')||t.includes('metodologia')||t.includes('objetivos')||t.includes('referencial')||t.includes('cronograma')||t.includes('problema')||t.includes('justificativa')){what='Estrutura uma investigação ou projeto técnico com clareza, método, evidência e entrega verificável.';how='Escreva problema, objetivos, justificativa, metodologia, entregáveis e critérios de validação.'}
+ return {what,how,demo:demoForTheme(theme,d)};
+}
+
+function themeDeepDive(d){
+ return `<div class="topicGrid">${d.te.map(x=>{const e=explainTheme(x,d);return `<div class="topicItem"><strong>${fmt(x)}</strong><p>${fmt(e.what)}</p><span class="demo"><b>Exemplo demonstrado:</b> ${fmt(e.demo)}</span><em>Como praticar: ${fmt(e.how)}</em></div>`}).join('')}</div>`;
+}
+
+function docsFor(d){
+ const docs=[];
+ const add=(name,desc,code)=>docs.push([name,desc,code]);
+ if(d.cy==='Engenharia'||d.tr.includes('Desenvolvimento')){
+   add('Especificação Técnica Funcional — ETF','Problema, usuários, regras de negócio, requisitos funcionais, requisitos não funcionais e critérios de aceite.','ETF-REQ');
+   add('Documento de Arquitetura de Software — DAS','Contexto, módulos, componentes, integrações, contratos de API, decisões técnicas e riscos.','DAS-ARCH');
+   add('Plano de Testes e Evidências — PTE','Cenários, dados de teste, resultados esperados, evidências, bugs encontrados e validação final.','PTE-QA');
+   add('README Profissional de Repositório','Visão do projeto, stack, instalação, execução, variáveis de ambiente, scripts e roadmap.','README');
+ }
+ if(d.tr.includes('Dados/IA')||d.cy==='Dados'||d.cy==='IA'){
+   add('Notebook Analítico Reprodutível — NAR','Coleta, limpeza, transformação, análise exploratória, gráficos, hipóteses e conclusões reproduzíveis.','NAR-DATA');
+   add('Dicionário de Dados e Métricas — DDM','Tabelas, campos, tipos, origem, regras de cálculo, granularidade e significado dos indicadores.','DDM');
+   add('Relatório de Modelagem Preditiva — RMP','Variáveis, treino, teste, métricas, interpretação, limitações e recomendações de uso do modelo.','RMP-ML');
+   add('Painel Executivo de Indicadores — PEI','KPIs, filtros, leitura gerencial, alertas, insights e recomendações de decisão.','PEI-BI');
+ }
+ if(d.tr.includes('Cloud/Infra')){
+   add('Runbook Operacional — ROP','Como subir, monitorar, diagnosticar, recuperar e escalar o ambiente com comandos e evidências.','ROP-SRE');
+   add('Diagrama de Infraestrutura e Integrações — DII','Componentes, rede, protocolos, portas, dependências, fluxos, riscos e pontos de falha.','DII-INFRA');
+   add('Plano de Observabilidade — POB','Logs, métricas, traces, alertas, SLIs/SLOs, painéis e resposta a incidentes.','POB-OBS');
+ }
+ if(d.tr.includes('Produto/UX')){
+   add('Product Requirements Document — PRD','Problema, público, proposta de valor, escopo, jornadas, requisitos, métricas e critérios de sucesso.','PRD');
+   add('Mapa de Jornada e Experiência — MJE','Etapas, dores, expectativas, pontos de contato, oportunidades e melhorias priorizadas.','MJE-UX');
+   add('Relatório de Avaliação de Usabilidade — RAU','Hipóteses, tarefas testadas, achados, severidade dos problemas e plano de melhoria.','RAU-UX');
+ }
+ if(d.tr.includes('Computação Profunda')){
+   add('Relatório Técnico-Formal de Algoritmo — RTA','Definições, modelo formal, pseudocódigo, demonstração, complexidade e análise de casos.','RTA-CS');
+   add('Caderno de Demonstrações Computacionais — CDC','Provas, exemplos manuais, simulações, rastreamento de execução e interpretação técnica.','CDC-THEORY');
+ }
+ if(d.cy==='TCC'||d.cy==='Projetos'){
+   add('Pré-Projeto Acadêmico-Técnico — PPAT','Tema, problema, objetivos, justificativa, metodologia, cronograma, entregáveis e referências.','PPAT');
+   add('Matriz de Validação do Projeto — MVPesq','Hipóteses, critérios de validação, instrumentos, dados coletados e evidências de resultado.','MVP-VAL');
+ }
+ if(d.cy==='Optativa') add('Checklist de Aplicação Profissional — CAP','Critérios objetivos para aplicar a optativa em produto, processo, governança ou inclusão.','CAP');
+ add('Registro Técnico de Aprendizado — RTAp','Resumo do estudo, decisões tomadas, erros encontrados, correções, evidências e próximos passos.','RTAp');
+ const seen=new Set();
+ return docs.filter(x=>!seen.has(x[0])&&seen.add(x[0])).slice(0,8);
+}
+function docsHTML(d){return `<div class="docGrid">${docsFor(d).map(x=>`<div class="docItem"><strong>${fmt(x[0])}</strong><span>${fmt(x[1])}</span><small>${esc(x[2])}</small></div>`).join('')}</div>`}
+
+function priorityFor(d){
+ const high=['Algoritmos','Banco de Dados','Engenharia de Software','Ciência de Dados','Inteligência Artificial','Sistemas Distribuídos','Redes','TCC','Elaboração de Projetos','Segurança'];
+ const mid=['Matemática','Álgebra','Cálculo','Sistemas Operacionais','IHC','Projeto','Arquitetura','Estágio','Qualidade'];
+ const hay=(d.n+' '+d.cy+' '+d.tr.join(' ')).toLowerCase();
+ if(high.some(x=>hay.includes(x.toLowerCase()))) return ['Alta','high','Prioridade Alta para Vagner'];
+ if(mid.some(x=>hay.includes(x.toLowerCase()))) return ['Média','mid','Prioridade Média'];
+ return ['Complementar','low','Prioridade Complementar'];
+}
+function dependenciesFor(d){
+ const before = d.pr && d.pr !== 'Nenhum' ? d.pr : 'Nenhum pré-requisito formal; comece pelos conceitos-base e construa exemplos simples.';
+ let after='Conectar com projetos práticos, documentação técnica e disciplinas da mesma trilha.';
+ if(d.n.includes('Fundamentos')) after='Avançar para estruturas, análise, projeto e aplicações práticas.';
+ if(d.n.includes('Banco de Dados')) after='Avançar para SGBD, Ciência de Dados, Sistemas Distribuídos e dashboards.';
+ if(d.n.includes('Requisitos')) after='Avançar para Análise, Projeto, Implementação/Testes e PRD.';
+ if(d.n.includes('Árvores')) after='Avançar para Grafos, Hashing, Heaps e Análise de Algoritmos.';
+ if(d.n.includes('Redes')) after='Avançar para Internetworking, Sistemas Distribuídos, Cloud e Segurança.';
+ if(d.n.includes('Inteligência Artificial')) after='Avançar para Ciência de Dados, Big Data, TCC aplicado e produtos inteligentes.';
+ if(d.n.includes('TCC I')) after='Executar implementação, validação, resultados e apresentação no TCC II.';
+ return {before, after};
+}
+function dependencyHTML(d){
+ const dep=dependenciesFor(d);
+ return `<div class="dependencyGrid"><div class="dependencyItem"><strong>Antes de estudar</strong><span>${fmt(dep.before)}</span></div><div class="dependencyItem"><strong>Depois avance para</strong><span>${fmt(dep.after)}</span></div></div>`;
+}
+function studyPlanHTML(d){
+ const docs=docsFor(d).slice(0,4).map(x=>x[0]);
+ return `
+ <div class="lessonStep"><b>01</b><div><strong>O que é esta disciplina?</strong><p>${fmt(d.co)}</p></div></div>
+ <div class="lessonStep"><b>02</b><div><strong>Por que ela importa?</strong><p>Ela fortalece a trilha ${fmt(d.tr.join(', '))} e ajuda a transformar conhecimento acadêmico em competência profissional demonstrável.</p></div></div>
+ <div class="lessonStep"><b>03</b><div><strong>Temas que precisam ser dominados</strong>${arr(d.te)}</div></div>
+ <div class="lessonStep"><b>04</b><div><strong>Exemplo demonstrado inicial</strong><p>${fmt(demoForTheme(d.te[0]||d.n,d))}</p></div></div>
+ <div class="lessonStep"><b>05</b><div><strong>Exercício prático</strong><p>${fmt(d.pj)}</p></div></div>
+ <div class="lessonStep"><b>06</b><div><strong>Entregáveis técnicos recomendados</strong>${arr(docs)}</div></div>
+ <div class="lessonStep"><b>07</b><div><strong>Checklist final</strong>${arr(d.ck)}</div></div>`;
+}
+function openStudy(i){
+ const d=D[i]; if(!d) return;
+ const p=priorityFor(d);
+ document.getElementById('studyTitle').innerHTML=fmt(d.n);
+ document.getElementById('studySubtitle').innerHTML=`${esc(d.cy)} · ${esc(d.df)} · <span class="priority ${p[1]}">${p[2]}</span>`;
+ document.getElementById('studyBody').innerHTML=studyPlanHTML(d);
+ document.getElementById('studyBackdrop').hidden=false;
+ document.body.style.overflow='hidden';
+}
+function closeStudy(){document.getElementById('studyBackdrop').hidden=true;document.body.style.overflow='';}
+
+function ok(d){const q=search.value.trim().toLowerCase(); const p=filter.value==='Todas'?active:filter.value; const byPath=p==='Todas'||d.tr.includes(p); const hay=[d.c,d.n,d.cy,d.df,d.pr,d.co,...d.tr,...d.te,...d.ex,...d.fo,d.pj,...d.ck].join(' ').toLowerCase(); return byPath && (!q||hay.includes(q))}
+function render(){
+ const data=D.map((d,i)=>({...d,_i:i})).filter(ok);
+ grid.innerHTML=data.length?data.map(d=>{
+  const p=priorityFor(d);
+  return `<article class="card ${expanded?'open':''}">
+   <button class="cardHead" aria-expanded="${expanded}">
+    <div class="cardTop"><div><div class="cardTitle">${fmt(d.n)}</div><p class="cardDesc">${fmt(d.co)}</p></div><span class="plus">+</span></div>
+    <div class="tags"><span class="code">${esc(d.c)}</span><span class="tag">${esc(d.cy)}</span><span class="tag">${esc(d.df)}</span><span class="priority ${p[1]}">${p[2]}</span>${d.tr.map(t=>`<span class="tag">${fmt(t)}</span>`).join('')}</div>
+   </button>
+   <div class="cardBody"><div class="bodyGrid">
+    <div class="box"><h4>Consulta rápida</h4><p>${fmt(d.co)}</p><div class="quickActions"><button class="btnSmall studyOpen" type="button" data-study="${d._i}">▶ Estudar esta disciplina</button></div></div>
+    <div class="box"><h4>Aplicação profissional</h4><p>Trilha: ${fmt(d.tr.join(', '))}. Dificuldade: ${fmt(d.df)}. Prioridade: ${fmt(p[0])}.</p></div>
+    <div class="box"><h4>Temas essenciais</h4>${arr(d.te)}</div>
+    <div class="box"><h4>Exemplos práticos</h4>${arr(d.ex)}</div>
+    <div class="box"><h4>Ferramentas</h4>${arr(d.fo)}</div>
+    <div class="box"><h4>Checklist de domínio</h4>${arr(d.ck)}</div>
+    <div class="box full"><h4>Mapa de dependências</h4>${dependencyHTML(d)}</div>
+    <div class="box full"><h4>Temas essenciais demonstrados</h4>${themeDeepDive(d)}</div>
+    <div class="box full"><h4>Entregáveis técnicos profissionais</h4>${docsHTML(d)}</div>
+    <div class="box full"><h4>Pré-requisito conceitual</h4><p>${fmt(d.pr)}</p></div>
+    <div class="box full project"><strong>Mini-projeto sugerido</strong><span>${fmt(d.pj)}</span></div>
+   </div></div>
+  </article>`}).join(''):'<div class="empty">Nenhuma disciplina encontrada. Tente outro termo ou limpe o filtro.</div>';
+ document.querySelectorAll('.cardHead').forEach(b=>b.onclick=()=>{const c=b.closest('.card');c.classList.toggle('open');b.setAttribute('aria-expanded',c.classList.contains('open'))});
+ document.querySelectorAll('.studyOpen').forEach(b=>b.onclick=(e)=>{e.stopPropagation();openStudy(Number(b.dataset.study))});
+}
+search.oninput=render;
+filter.onchange=()=>{active=filter.value;document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x.textContent===active));render()};
+
+function goToStudy(e){
+ if(e) e.preventDefault();
+ const target=document.getElementById('disciplinas') || document.getElementById('grid');
+ if(!target) return;
+ const navH=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'))||76;
+ const y=target.getBoundingClientRect().top + window.pageYOffset - navH - 12;
+ window.scrollTo({top:y,behavior:'smooth'});
+ setTimeout(()=>{
+   const searchBox=document.getElementById('search');
+   if(searchBox && window.innerWidth > 700) searchBox.focus({preventScroll:true});
+ },450);
+}
+
+function toggleFocus(){document.body.classList.toggle('focus')}
+function toggleTheme(){
+ const t=document.documentElement.dataset.theme==='dark'?'light':'dark';
+ document.documentElement.dataset.theme=t;
+ document.getElementById('metaTheme').content=t==='dark'?'#08111F':'#F5F7FB';
+ localStorage.setItem('ccTheme',t);
+}
+function toggleExpand(){
+ expanded=!expanded;
+ expand.textContent=expanded?'Recolher tudo':'Expandir tudo';
+ render();
+}
+function setDrawer(open){
+ const drawer=document.getElementById('mobileDrawer');
+ const backdrop=document.getElementById('drawerBackdrop');
+ const btn=document.getElementById('mobileMenuBtn');
+ drawer.hidden=!open;
+ backdrop.hidden=!open;
+ btn.setAttribute('aria-expanded',open?'true':'false');
+ document.body.style.overflow=open?'hidden':'';
+}
+expand.onclick=toggleExpand;
+document.getElementById('focusBtn').onclick=toggleFocus;
+document.getElementById('themeBtn').onclick=toggleTheme;
+document.getElementById('mobileMenuBtn').onclick=()=>setDrawer(true);
+
+const studyBtn=document.getElementById('studyBtn');
+if(studyBtn) studyBtn.addEventListener('click',goToStudy);
+
+document.getElementById('drawerClose').onclick=()=>setDrawer(false);
+document.getElementById('drawerBackdrop').onclick=()=>setDrawer(false);
+document.getElementById('drawerExpand').onclick=()=>{toggleExpand();setDrawer(false)};
+document.getElementById('drawerFocus').onclick=()=>{toggleFocus();setDrawer(false)};
+document.getElementById('drawerTheme').onclick=()=>{toggleTheme();setDrawer(false)};
+
+document.querySelectorAll('[data-drawer-link]').forEach(a=>a.addEventListener('click',ev=>{
+ if(a.getAttribute('href')==='#disciplinas') goToStudy(ev);
+ setDrawer(false);
+}));
+
+
+document.getElementById('studyClose').onclick=closeStudy;
+document.getElementById('studyBackdrop').addEventListener('click',e=>{if(e.target.id==='studyBackdrop')closeStudy()});
+document.getElementById('bottomStudy').onclick=goToStudy;
+document.getElementById('bottomFocus').onclick=toggleFocus;
+document.getElementById('bottomMenu').onclick=()=>setDrawer(true);
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){setDrawer(false);closeStudy();}});
+document.documentElement.dataset.theme=localStorage.getItem('ccTheme')||'dark';
+setup();
+</script>
+</body>
+</html>
