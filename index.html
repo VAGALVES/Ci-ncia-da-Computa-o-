@@ -58,6 +58,21 @@ mark.hl{background:color-mix(in srgb,var(--accent-2) 60%,transparent);color:var(
 @media(max-width:900px){:root{--nav-h:70px}.heroStats{grid-template-columns:repeat(2,minmax(0,1fr))}.insights{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.toolbarInner{grid-template-columns:1fr}.sectionHead{grid-template-columns:1fr}.bodyGrid,.topicGrid,.docGrid{grid-template-columns:1fr}}
 @media(max-width:620px){body{padding-bottom:78px}.bottomNav{display:grid}.wrap,.topbarInner{width:min(100% - 22px,var(--max))}.logo{width:38px;height:38px;border-radius:13px}.brand span{display:none}.hideMobile{display:none}.btn{min-height:40px;padding:9px 11px}h1{font-size:clamp(2.35rem,15vw,4.2rem)}.heroStats{grid-template-columns:1fr}.pathGrid,.roadGrid,.libraryGrid{grid-template-columns:1fr}.float{right:10px;bottom:10px}.float .btn{width:44px;height:44px;border-radius:16px}}
 @media(max-width:430px){.topbarInner{gap:8px}.brand strong{max-width:165px}.actions{gap:6px}.btn{font-size:.86rem}.panel,.card,.roadmap{border-radius:22px}.cardHead{padding:17px}.cardBody{padding-left:17px;padding-right:17px}}
+
+.chaGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.chaBox{border:1px solid var(--line);border-radius:16px;background:color-mix(in srgb,var(--card) 78%,transparent);padding:14px}
+.chaBox h4{margin:0 0 8px!important;color:var(--accent)!important;font-size:.78rem!important;text-transform:uppercase;letter-spacing:.07em}
+.chaBox p{margin:0;color:var(--muted);font-size:.9rem}
+.practiceGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.practiceItem{border:1px solid color-mix(in srgb,var(--accent) 24%,var(--line));background:color-mix(in srgb,var(--accent) 6%,transparent);border-radius:16px;padding:14px}
+.practiceItem strong{display:block;color:var(--text);font-size:.94rem;margin-bottom:6px}
+.practiceItem span{display:block;color:var(--muted);font-size:.88rem}
+.levelGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.levelItem{border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--card) 76%,transparent);padding:12px}
+.levelItem b{display:block;color:var(--accent-2);font-size:.78rem;font-family:var(--font-mono);margin-bottom:5px}
+.levelItem span{display:block;color:var(--muted);font-size:.84rem}
+@media(max-width:900px){.chaGrid,.practiceGrid,.levelGrid{grid-template-columns:1fr}}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -105,6 +120,22 @@ mark.hl{background:color-mix(in srgb,var(--accent-2) 60%,transparent);color:var(
       <article class="insight"><strong>Escala</strong><p>Redes, sistemas, banco de dados, cloud, segurança e distribuição levam o software para o mundo real.</p></article>
     </div>
   </section>
+  
+<section class="section wrap decorative" id="cha">
+  <div class="sectionHead">
+    <div>
+      <span class="kicker">Método CHA</span>
+      <h2>Conhecimento, Habilidade e Atitude.</h2>
+      <p class="intro">Cada disciplina passa a ser lida por três lentes: o que você precisa compreender, o que precisa saber executar e que postura profissional deve desenvolver para transformar estudo em competência real.</p>
+    </div>
+  </div>
+  <div class="insights">
+    <article class="insight"><strong>Conhecimento</strong><p>Conceitos, fundamentos, vocabulário técnico, modelos mentais e princípios que sustentam a disciplina.</p></article>
+    <article class="insight"><strong>Habilidade</strong><p>Capacidade prática de aplicar o conteúdo: codar, modelar, documentar, testar, analisar, projetar e comunicar.</p></article>
+    <article class="insight"><strong>Atitude</strong><p>Comportamentos profissionais: precisão, curiosidade, disciplina, ética, colaboração, pensamento crítico e responsabilidade técnica.</p></article>
+  </div>
+</section>
+
   <div class="toolbar" id="disciplinas"><div class="toolbarInner wrap"><input id="search" class="field" type="search" placeholder="Buscar disciplina, tema, ferramenta ou carreira..." /><select id="filter" class="field"><option value="Todas">Todas as trilhas</option></select><button id="expand" class="btn">Expandir tudo</button></div></div>
   <section class="section wrap">
     <div class="sectionHead"><div><span class="kicker">Consulta por disciplina</span><h2>Disciplinas mapeadas.</h2><p class="intro">Clique em cada card para abrir a decomposição. Agora cada disciplina também traz os temas essenciais destrinchados e documentos práticos que podem virar entregáveis reais.</p><div id="chips" class="chips"></div></div></div>
@@ -172,7 +203,7 @@ mark.hl{background:color-mix(in srgb,var(--accent-2) 60%,transparent);color:var(
   <button type="button" id="bottomMenu" aria-label="Abrir menu"><b>☰</b>Menu</button>
 </nav>
 
-<footer class="footer wrap"><strong>VS Consulting · Ciência da Computação</strong><br>Material de consulta, estudo, portfólio e planejamento profissional.</footer>
+<footer class="footer wrap"><strong>VS Consulting · Ciência da Computação</strong><br>Material de consulta, estudo, portfólio, CHA e planejamento profissional.</footer>
 <script>
 const paths={
  'Desenvolvimento':['Algoritmos','Estruturas de dados','Engenharia de Software','APIs','Testes','GitHub'],
@@ -375,6 +406,82 @@ function explainTheme(theme,d){
 function themeDeepDive(d){
  return `<div class="topicGrid">${d.te.map(x=>{const e=explainTheme(x,d);return `<div class="topicItem"><strong>${fmt(x)}</strong><p>${fmt(e.what)}</p><span class="demo"><b>Exemplo demonstrado:</b> ${fmt(e.demo)}</span><em>Como praticar: ${fmt(e.how)}</em></div>`}).join('')}</div>`;
 }
+
+
+function chaFor(d){
+ const name=d.n.toLowerCase(), cy=(d.cy||'').toLowerCase(), tr=(d.tr||[]).join(' ').toLowerCase();
+ let c='Dominar os conceitos centrais da disciplina, seus termos técnicos, relações com outras matérias e princípios que explicam o funcionamento do tema.';
+ let h='Aplicar o conteúdo em exercícios, pequenos sistemas, análises, diagramas, protótipos ou documentos técnicos verificáveis.';
+ let a='Estudar com consistência, registrar decisões, testar hipóteses, revisar erros e comunicar o raciocínio de forma clara e responsável.';
+
+ if(tr.includes('dados')||cy.includes('dados')||cy.includes('ia')){
+   c='Entender dados, variáveis, métricas, modelos, qualidade, incerteza, viés e interpretação de resultados.';
+   h='Coletar, limpar, modelar, consultar, visualizar e explicar dados com notebooks, SQL, dashboards e relatórios.';
+   a='Ser cuidadoso com evidências, evitar conclusões apressadas, questionar qualidade dos dados e explicar limitações.';
+ }
+ if(tr.includes('desenvolvimento')||cy.includes('programação')||cy.includes('engenharia')){
+   c='Compreender lógica, estruturas, requisitos, arquitetura, padrões, qualidade, testes e manutenção de software.';
+   h='Implementar, versionar, testar, refatorar, documentar e entregar software funcional com boas práticas.';
+   a='Ter disciplina de engenharia: clareza, revisão, responsabilidade técnica, colaboração e melhoria contínua.';
+ }
+ if(tr.includes('cloud')||cy.includes('infraestrutura')||cy.includes('hardware')||name.includes('redes')){
+   c='Entender execução, comunicação, recursos, disponibilidade, segurança, desempenho e arquitetura operacional.';
+   h='Configurar ambientes, diagnosticar problemas, ler logs, criar runbooks, simular redes e documentar infraestrutura.';
+   a='Agir com prudência operacional, atenção a riscos, mentalidade de confiabilidade e prevenção de falhas.';
+ }
+ if(tr.includes('produto')||cy.includes('produto')||cy.includes('negócios')){
+   c='Compreender usuários, problemas, jornadas, valor, usabilidade, requisitos, validação e métricas de sucesso.';
+   h='Criar personas, protótipos, PRDs, jornadas, testes de usabilidade, backlog e propostas de solução.';
+   a='Ter empatia, escuta ativa, foco em valor, abertura a feedback e disposição para testar hipóteses.';
+ }
+ if(tr.includes('computação profunda')||cy.includes('teoria')||name.includes('algoritmos')){
+   c='Dominar abstrações, modelos formais, provas, complexidade, limites computacionais e estruturas fundamentais.';
+   h='Demonstrar, implementar, simular, comparar soluções e explicar formalmente desempenho e corretude.';
+   a='Cultivar rigor, paciência intelectual, pensamento abstrato e atenção aos detalhes.';
+ }
+ if(cy.includes('tcc')||cy.includes('projetos')){
+   c='Entender problema, objetivos, metodologia, revisão teórica, critérios de validação e estrutura científica.';
+   h='Escrever projeto, executar método, coletar evidências, desenvolver solução, analisar resultados e apresentar conclusões.';
+   a='Manter autonomia, organização, honestidade intelectual, gestão do tempo e compromisso com qualidade.';
+ }
+ return {c,h,a};
+}
+
+function chaHTML(d){
+ const x=chaFor(d);
+ return `<div class="chaGrid">
+   <div class="chaBox"><h4>Conhecimento</h4><p>${x.c}</p></div>
+   <div class="chaBox"><h4>Habilidade</h4><p>${x.h}</p></div>
+   <div class="chaBox"><h4>Atitude</h4><p>${x.a}</p></div>
+ </div>`;
+}
+
+function practiceFor(d){
+ const cy=(d.cy||'').toLowerCase(), tr=(d.tr||[]).join(' ').toLowerCase(), name=d.n.toLowerCase();
+ const items=[];
+ const add=(a,b)=>items.push([a,b]);
+ add('Exercício de aquecimento',`Explique ${d.n} em 5 linhas, usando linguagem simples, e liste 3 situações reais onde ela aparece.`);
+ add('Exercício aplicado',`Resolva um problema pequeno usando os temas: ${d.te.slice(0,3).join(', ')}.`);
+ if(tr.includes('desenvolvimento')||cy.includes('programação')||cy.includes('engenharia')) add('Desafio de código','Criar uma implementação simples, versionar no GitHub, comentar o código e escrever um README de execução.');
+ if(tr.includes('dados')||cy.includes('dados')||cy.includes('ia')) add('Desafio de dados','Criar um notebook com dados de exemplo, tratamento, análise visual, métrica principal e conclusão executiva.');
+ if(tr.includes('cloud')||cy.includes('infraestrutura')||name.includes('redes')) add('Laboratório técnico','Montar um ambiente, capturar evidências, registrar comandos, logs, erro encontrado e solução aplicada.');
+ if(tr.includes('produto')) add('Desafio de produto','Criar persona, jornada, problema, hipótese, protótipo e critério de validação.');
+ if(tr.includes('computação profunda')||cy.includes('teoria')) add('Demonstração formal','Criar pseudocódigo, exemplo manual, análise de complexidade ou prova conceitual simplificada.');
+ add('Entrega de portfólio',`Publicar o mini-projeto “${d.pj}” com documentação, prints, aprendizados e próximos passos.`);
+ return items.slice(0,6);
+}
+function practiceHTML(d){return `<div class="practiceGrid">${practiceFor(d).map(x=>`<div class="practiceItem"><strong>${x[0]}</strong><span>${x[1]}</span></div>`).join('')}</div>`}
+
+function levelsFor(d){
+ return [
+  ['N1','Consigo explicar o conceito central sem consultar material.'],
+  ['N2','Consigo resolver um exercício guiado e justificar o caminho.'],
+  ['N3','Consigo aplicar em um problema real pequeno e documentar.'],
+  ['N4','Consigo conectar com outras disciplinas e gerar entrega de portfólio.']
+ ];
+}
+function levelsHTML(d){return `<div class="levelGrid">${levelsFor(d).map(x=>`<div class="levelItem"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div>`}
+
 
 function docsFor(d){
  const docs=[];
